@@ -1,7 +1,9 @@
 
 # Agentic AI Foundation - Generative AI Customer Experience Platform
 
-The CX Agent is an intelligent customer experience platform built on **LangGraph** and designed for deployment on **AWS Bedrock AgentCore Runtime**. This agentic AI solution leverages multiple generative AI foundations including LLM Gateway, observability and guardrails to deliver sophisticated customer service capabilities through a conversational interface.
+The CX Agent is an intelligent customer experience platform built on **LangGraph** and designed for deployment on **AWS Bedrock AgentCore Runtime**. This agentic AI solution leverages multiple generative AI foundations including direct Bedrock model access, observability and guardrails to deliver sophisticated customer service capabilities through a conversational interface.
+
+> **Note:** This is a fork of AWS's original blueprint, adapted to remove the GenAI Gateway dependency (saving ~$380/month) in favor of calling Amazon Bedrock directly. See the architecture diagram and "Direct Bedrock Model Access" section below for what actually changed.
 
 ![](assets/agent01.png "Screenshot of Streamlit-based chat UI showing controls for configuring where the backend agent is hosted and to send feedback on AI responses received in the conversation.")
 
@@ -26,30 +28,40 @@ For many of these AI platform capabilities, there are multiple alternative techn
 
 In this sample we've tried to choose tools that are popular with our customers, and keep the code simple (avoid introducing extra abstraction layers) - so switching where needed would require some effort but should be reasonably straightforward. The overall architecture is as shown below:
 
-![](assets/platform_arch.jpg "Architecture overview diagram. Components include a (local) Streamlit application; Langfuse; Amazon Cognito; Amazon Bedrock AgentCore; Amazon Bedrock Guardrails; Amazon Bedrock Knowledge Base (backed by OpenSearch Serverless, loaded with data from Amazon S3); Amazon Bedrock Foundation Models called via a GenAI Gateway; Amazon CloudWatch for observability; and third-party external services including Tavily and Zendesk.")
+```mermaid
+flowchart TB
+    User([User]) --> Streamlit[Streamlit Frontend]
+    Streamlit -- "login" --> Cognito[Amazon Cognito]
+    Streamlit -- "SigV4-signed request" --> Runtime["AgentCore Runtime\n(LangGraph Agent)"]
+    Runtime --> Guardrails["Bedrock Guardrails\n(input/output checks)"]
+    Runtime -- "direct model calls\n(ChatBedrockConverse)" --> Bedrock["Amazon Bedrock\nFoundation Models"]
+    Runtime -- "retrieve" --> KB["Bedrock Knowledge Base\n(OpenSearch Serverless)"]
+    S3[("S3 Documents")] --> KB
+    Runtime -- "web_search tool" --> Tavily["Tavily Web Search API"]
+    Runtime -- "OTEL traces" --> Langfuse["Langfuse Observability"]
+```
+
+*Diagram reflects this fork's actual architecture: the original blueprint's GenAI Gateway has been removed (the agent calls Bedrock directly instead), and Zendesk integration shown in the original diagram was never completed in this fork.*
 
 **A Sample end-2-end User Interaction Flow**
 
-![](assets/sample_sequence_diagram.png "Sequence diagram: Users log in and enter a question in the Streamlit frontend app, which raises a POST request to the '/invocations' endpoint of an AgentCore Runtime-deployed LangGraph agent. The agent starts a tracing span in Langfuse, then validates the input with Amazon Bedrock Guardrails before starting initial LLM processing of the prompt via the GenAI Gateway. The LLM returns tool call request(s) which the agent orchestrates via the Bedrock AgentCore Gateway to the relevant provider: Bedrock Knowledge Base, Tavily Web Search, Zendesk API, or AWS Lambda. After tool call(s), the Agent makes another LLM call to the GenAI Gateway to generate the final response.This final response is again checked with Amazon Bedrock Guardrails, and the agent ends the tracing span in Langfuse with metadata and metrics - before finally returning the response to the Streamlit app and thereby the user.")
+**Actual sequence in this fork:** Users log in via Cognito and enter a question in the Streamlit frontend, which sends a SigV4-signed request to the `/invocations` endpoint of an AgentCore Runtime-deployed LangGraph agent. The agent starts a tracing span in Langfuse, validates the input with Bedrock Guardrails, then calls Amazon Bedrock directly (no Gateway) for initial LLM processing. The LLM returns tool call request(s), which the agent executes directly: Bedrock Knowledge Base retrieval, or Tavily web search. After tool call(s), the agent calls Bedrock directly again to generate the final response, which is checked with Guardrails, traced in Langfuse, and returned to the user.
+
+*(The original sequence diagram image above described a Gateway-mediated flow with additional Zendesk/Lambda tool paths - those aren't part of this fork.)*
 
 ## Foundational Components
 
 Strong foundational or "platform" capabilities increase the speed and success rate of generative and agentic AI projects. This sample demonstrates a customer service agent integrating several of these capabilities together:
 
-1. **Centralized AI model gateway** to enable cross-project governance like cost tracking, fair usage limits, model access control and discovery.
+1. **Direct model access** via Amazon Bedrock, favoring simplicity and lower cost over centralized multi-project governance (see below for what this trades off against the original design).
 2. **Guardrails** to detect and prevent risks in real-time like prompt injection attempts, toxic or offensive content, denied topics or hallucinations.
 3. **Observability tools** for detailed monitoring of the deployed agent, analysis, and debugging via reasoning "traces".
 
-### Multi-provider Generative AI Gateway
-Centralized model management and routing system that provides:
-- **Multi-model Support**: Access to numerous large language models (LLMs) through a unified, industry-standard API gateway based on OpenAI API standards
-- **Load Balancing**: Intelligent request distribution across model endpoints based on uase, cost and latency
-- **Usage and cost** tracking across providers
-- **Rate Limiting**: Set model, key, team, user-level budgets for added governance
-
-Refer to the prerequisites section to deploy your Generative AI Gateway on AWS.
-
-![](assets/llmgateway01.png "Screenshot of LiteLLM dashboard tracking capabilities, showing graphs of token usage over time; requests per day; spend per day; and successful vs failed requests over time.")
+### Direct Bedrock Model Access
+This fork removes the original GenAI Gateway (a centralized LiteLLM-based routing layer) in favor of calling Amazon Bedrock directly via `ChatBedrockConverse`:
+- **Lower cost**: avoids the Gateway's ~$380/month always-on infrastructure cost
+- **Simpler architecture**: one fewer moving part between the agent and the model
+- **Trade-off**: loses the Gateway's cross-project cost tracking, multi-provider routing, and centralized rate-limiting - a reasonable trade for a single-agent deployment like this one, worth reconsidering at larger scale
 
 ### Observability
 We combine [Amazon Bedrock AgentCore Observability](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-configure.html) together with [Langfuse](https://langfuse.com/) (Open Source Edition deployed on AWS as shown [here](https://github.com/aws-samples/amazon-bedrock-samples/tree/main/evaluation-observe)), to collect and analyze detailed telemetry from the agent as it runs. This integration provides:
