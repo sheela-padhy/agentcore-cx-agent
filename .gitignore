@@ -1,0 +1,25 @@
+# --- Secrets: never commit real credentials/config ---
+terraform.tfvars
+*.tfvars
+!*.tfvars.example
+.env
+*.pem
+*.key
+
+# --- Terraform local state & cache (contains resource details, can be large) ---
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# --- Python ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# --- OS / editor junk ---
+.DS_Store
+.idea/
+.vscode/

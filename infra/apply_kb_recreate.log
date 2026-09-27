@@ -1,0 +1,653 @@
+data.archive_file.interceptor_lambda_zip: Reading...
+module.cognito.random_string.domain_suffix: Refreshing state... [id=3npaw9a1]
+data.archive_file.interceptor_lambda_zip: Read complete after 0s [id=76b2b13ce1e650d194dc272e28e9bfef51aed4da]
+module.container_image.data.aws_region.current: Reading...
+data.aws_caller_identity.current: Reading...
+aws_sqs_queue.interceptor_dlq: Refreshing state... [id=https://sqs.us-west-2.amazonaws.com/504736193889/cx-gateway-interceptor-dlq]
+module.kb_stack.aws_iam_role.bedrock_role: Refreshing state... [id=agentic-ai-kb-bedrock-role]
+module.container_image.aws_ecr_repository.ecr_repository: Refreshing state... [id=langgraph-cx-agent]
+data.aws_region.current: Reading...
+module.container_image.data.aws_caller_identity.current: Reading...
+module.kb_stack.module.knowledge_base.data.aws_region.current: Reading...
+aws_dynamodb_table.rate_limit_table: Refreshing state... [id=agentcore-gateway-rate-limits]
+module.kb_stack.module.knowledge_base.data.aws_region.current: Read complete after 0s [id=us-west-2]
+module.container_image.data.aws_region.current: Read complete after 0s [id=us-west-2]
+module.cognito.aws_cognito_user_pool.user_pool: Refreshing state... [id=us-west-2_EnNhLHFPx]
+module.kb_stack.module.opensearch.aws_opensearchserverless_security_policy.nw_policy[0]: Refreshing state... [id=nw-policy-agentic-ai-kb]
+data.aws_region.current: Read complete after 0s [id=us-west-2]
+module.kb_stack.aws_s3_bucket.access_logs: Refreshing state... [id=agentic-ai-kb-access-logs20260924034442862800000001]
+module.container_image.data.aws_caller_identity.current: Read complete after 0s [id=504736193889]
+data.aws_caller_identity.current: Read complete after 0s [id=504736193889]
+module.kb_stack.aws_s3_bucket.kb_bucket: Refreshing state... [id=agentic-ai-kb20260924034442869300000002]
+data.aws_iam_policy_document.gateway_assume_role: Reading...
+module.kb_stack.module.opensearch.data.aws_caller_identity.current: Reading...
+data.aws_iam_policy_document.gateway_assume_role: Read complete after 0s [id=4217861921]
+aws_bedrockagentcore_memory.agent_memory: Refreshing state... [id=CxMemory-zdu0OgFYk4]
+module.kb_stack.module.opensearch.data.aws_caller_identity.current: Read complete after 0s [id=504736193889]
+module.kb_stack.module.opensearch.aws_opensearchserverless_security_policy.security_policy: Refreshing state... [id=security-policy-agentic-ai-kb]
+module.kb_stack.module.opensearch.data.aws_region.current: Reading...
+module.kb_stack.module.opensearch.data.aws_region.current: Read complete after 0s [id=us-west-2]
+module.cognito.data.aws_region.current: Reading...
+module.cognito.data.aws_region.current: Read complete after 0s [id=us-west-2]
+module.guardrail.aws_bedrock_guardrail.guardrail: Refreshing state... [name=agentic-ai-guardrail]
+aws_iam_role.interceptor_lambda_role: Refreshing state... [id=cx-gateway-interceptor-lambda-role]
+aws_iam_role.gateway_role: Refreshing state... [id=bedrock-agentcore-gateway-role]
+module.kb_stack.module.opensearch.data.aws_iam_session_context.current: Reading...
+module.container_image.terraform_data.ecr_image: Refreshing state... [id=369b9cb7-43eb-af83-d45d-7211a4612e57]
+module.kb_stack.aws_s3_bucket_lifecycle_configuration.kb_bucket_lifecycle: Refreshing state... [id=agentic-ai-kb20260924034442869300000002]
+module.kb_stack.aws_s3_bucket_public_access_block.kb_bucket_pab: Refreshing state... [id=agentic-ai-kb20260924034442869300000002]
+module.kb_stack.aws_s3_bucket_versioning.kb_bucket_versioning: Refreshing state... [id=agentic-ai-kb20260924034442869300000002]
+module.kb_stack.aws_s3_bucket_server_side_encryption_configuration.kb_bucket_encryption: Refreshing state... [id=agentic-ai-kb20260924034442869300000002]
+module.kb_stack.aws_s3_bucket_logging.kb_bucket_logging: Refreshing state... [id=agentic-ai-kb20260924034442869300000002]
+module.kb_stack.aws_s3_bucket_server_side_encryption_configuration.access_logs_encryption: Refreshing state... [id=agentic-ai-kb-access-logs20260924034442862800000001]
+module.kb_stack.module.opensearch.awscc_opensearchserverless_collection.os_collection: Refreshing state... [id=p6ypn8ceeql30vhg1i4f]
+module.kb_stack.module.opensearch.data.aws_iam_session_context.current: Read complete after 0s [id=arn:aws:sts::504736193889:assumed-role/sheela-cx-agent-ec2-role/i-011c9de2a3eb7dc88]
+module.kb_stack.aws_s3_bucket_lifecycle_configuration.access_logs_lifecycle: Refreshing state... [id=agentic-ai-kb-access-logs20260924034442862800000001]
+module.kb_stack.aws_s3_bucket_public_access_block.access_logs_pab: Refreshing state... [id=agentic-ai-kb-access-logs20260924034442862800000001]
+module.kb_stack.aws_s3_bucket_versioning.access_logs_versioning: Refreshing state... [id=agentic-ai-kb-access-logs20260924034442862800000001]
+module.cognito.aws_cognito_user_pool_domain.user_pool_domain: Refreshing state... [id=agentic-ai-user-pool-3npaw9a1]
+module.cognito.aws_cognito_resource_server.resource_server: Refreshing state... [id=us-west-2_EnNhLHFPx|gateway-api]
+module.cognito.aws_cognito_user_pool_client.user_pool_client: Refreshing state... [id=58cbfkr9qaleptejutb6gn5lof]
+module.secrets.aws_iam_role.rotation_lambda_role: Refreshing state... [id=secrets-rotation-lambda-role]
+module.secrets.data.archive_file.rotation_lambda_zip: Reading...
+module.secrets.data.archive_file.rotation_lambda_zip: Read complete after 0s [id=147cde06de41f605922abf8e0f3213c3d5023cd9]
+module.secrets.aws_kms_key.secrets_key: Refreshing state... [id=dcf5b1f3-8bcd-4a97-a356-cee4fd65cae2]
+module.kb_stack.module.knowledge_base.aws_iam_role_policy.bedrock_kb_sample_kb_model: Refreshing state... [id=agentic-ai-kb-bedrock-role:AmazonBedrockOSSPolicyForKnowledgeBase_agentic-ai-kb]
+module.kb_stack.module.opensearch.aws_opensearchserverless_access_policy.data_policy: Refreshing state... [id=os-access-policy-agentic-ai-kb]
+module.secrets.aws_kms_alias.secrets_key: Refreshing state... [id=alias/secrets-manager]
+module.secrets.aws_secretsmanager_secret.cognito_client_secret: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:cognito_client_secret-Yf38gs]
+module.secrets.aws_secretsmanager_secret.gateway_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:gateway_credentials-ized26]
+module.secrets.aws_secretsmanager_secret.zendesk_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:zendesk_credentials-pfgrAs]
+module.secrets.aws_secretsmanager_secret.tavily_key: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:tavily_key-etzIxf]
+module.secrets.aws_secretsmanager_secret.langfuse_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:langfuse_credentials-n2ca3R]
+module.secrets.aws_secretsmanager_secret_version.cognito_client_secret: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:cognito_client_secret-Yf38gs|terraform-2026092403444693760000000c]
+module.secrets.aws_secretsmanager_secret_version.gateway_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:gateway_credentials-ized26|terraform-2026092403444662820000000a]
+module.kb_stack.module.opensearch.time_sleep.wait_before_index_creation[0]: Refreshing state... [id=2026-09-24T03:50:43Z]
+module.secrets.aws_secretsmanager_secret_version.zendesk_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:zendesk_credentials-pfgrAs|terraform-2026092403444714900000000d]
+module.kb_stack.module.knowledge_base.time_sleep.iam_consistency_delay: Refreshing state... [id=2026-09-24T03:53:44Z]
+module.secrets.aws_secretsmanager_secret_version.langfuse_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:langfuse_credentials-n2ca3R|terraform-20260925041634228100000001]
+aws_iam_role_policy_attachment.interceptor_xray: Refreshing state... [id=cx-gateway-interceptor-lambda-role/arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess]
+aws_lambda_function.gateway_interceptor: Refreshing state... [id=cx-gateway-interceptor]
+aws_iam_role_policy.interceptor_dynamodb_policy: Refreshing state... [id=cx-gateway-interceptor-lambda-role:interceptor-dynamodb-rate-limit]
+aws_iam_role_policy.interceptor_bedrock_policy: Refreshing state... [id=cx-gateway-interceptor-lambda-role:interceptor-bedrock-guardrails]
+aws_iam_role_policy_attachment.interceptor_basic: Refreshing state... [id=cx-gateway-interceptor-lambda-role/arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole]
+aws_iam_role_policy.interceptor_dlq_policy: Refreshing state... [id=cx-gateway-interceptor-lambda-role:interceptor-dlq-send]
+module.secrets.aws_secretsmanager_secret_version.tavily_key: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:tavily_key-etzIxf|terraform-20260924203614689600000002]
+module.kb_stack.module.knowledge_base.aws_bedrockagent_knowledge_base.sample_kb: Refreshing state... [id=3IIQRVNCQB]
+module.secrets.aws_iam_role_policy_attachment.rotation_lambda_basic: Refreshing state... [id=secrets-rotation-lambda-role/arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole]
+module.secrets.aws_iam_role_policy_attachment.rotation_lambda_xray: Refreshing state... [id=secrets-rotation-lambda-role/arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess]
+module.secrets.aws_iam_role_policy.rotation_lambda_secrets: Refreshing state... [id=secrets-rotation-lambda-role:secrets-rotation-policy]
+module.secrets.aws_lambda_function.rotation_lambda: Refreshing state... [id=secrets-rotation-lambda]
+aws_iam_role_policy.gateway_policy: Refreshing state... [id=bedrock-agentcore-gateway-role:gateway-external-api-policy]
+aws_bedrockagentcore_gateway.cx_gateway: Refreshing state... [name=cx-agent-gateway]
+module.kb_stack.module.knowledge_base.aws_bedrockagent_data_source.sample_kb: Refreshing state... [id=NSRZKRQIJ0,3IIQRVNCQB]
+module.secrets.aws_secretsmanager_secret_rotation.gateway_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:gateway_credentials-ized26]
+module.secrets.aws_lambda_permission.allow_secrets_manager: Refreshing state... [id=AllowExecutionFromSecretsManager]
+module.secrets.aws_secretsmanager_secret_rotation.langfuse_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:langfuse_credentials-n2ca3R]
+module.secrets.aws_secretsmanager_secret_rotation.zendesk_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:zendesk_credentials-pfgrAs]
+module.secrets.aws_secretsmanager_secret_rotation.cognito_client_secret: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:cognito_client_secret-Yf38gs]
+aws_lambda_permission.allow_gateway_interceptor: Refreshing state... [id=AllowAgentCoreGatewayInterceptor]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+ <= read (data resources)
+
+Terraform will perform the following actions:
+
+  # aws_bedrockagentcore_agent_runtime.agent_runtime will be created
+  + resource "aws_bedrockagentcore_agent_runtime" "agent_runtime" {
+      + agent_runtime_arn         = (known after apply)
+      + agent_runtime_id          = (known after apply)
+      + agent_runtime_name        = "langgraph_cx_agent"
+      + agent_runtime_version     = (known after apply)
+      + description               = "Example customer service agent for Agentic AI Foundation"
+      + environment_variables     = {
+          + "AWS_REGION"                  = "us-west-2"
+          + "DEFAULT_MODEL"               = "global.anthropic.claude-haiku-4-5-20251001-v1:0"
+          + "DISABLE_ADOT_OBSERVABILITY"  = "true"
+          + "LANGSMITH_OTEL_ENABLED"      = "true"
+          + "LANGSMITH_TRACING"           = "true"
+          + "LOG_LEVEL"                   = "INFO"
+          + "OTEL_EXPORTER_OTLP_ENDPOINT" = "https://us.cloud.langfuse.com/api/public/otel"
+          + "OTEL_EXPORTER_OTLP_HEADERS"  = (sensitive value)
+        }
+      + lifecycle_configuration   = (known after apply)
+      + region                    = "us-west-2"
+      + role_arn                  = (known after apply)
+      + tags_all                  = {}
+      + workload_identity_details = (known after apply)
+
+      + agent_runtime_artifact {
+          + container_configuration {
+              + container_uri = "504736193889.dkr.ecr.us-west-2.amazonaws.com/langgraph-cx-agent:latest"
+            }
+        }
+
+      + network_configuration {
+          + network_mode = "PUBLIC"
+        }
+
+      + protocol_configuration {
+          + server_protocol = "HTTP"
+        }
+    }
+
+  # module.bedrock_role.data.aws_caller_identity.current will be read during apply
+  # (depends on a resource or a module with changes pending)
+ <= data "aws_caller_identity" "current" {
+      + account_id = (known after apply)
+      + arn        = (known after apply)
+      + id         = (known after apply)
+      + user_id    = (known after apply)
+    }
+
+  # module.bedrock_role.data.aws_region.current will be read during apply
+  # (depends on a resource or a module with changes pending)
+ <= data "aws_region" "current" {
+      + description = (known after apply)
+      + endpoint    = (known after apply)
+      + id          = (known after apply)
+      + name        = (known after apply)
+      + region      = (known after apply)
+    }
+
+  # module.bedrock_role.aws_iam_policy.agentcore_permissions will be created
+  + resource "aws_iam_policy" "agentcore_permissions" {
+      + arn              = (known after apply)
+      + attachment_count = (known after apply)
+      + id               = (known after apply)
+      + name             = "agentic-ai-bedrock-role-agentcore-policy"
+      + name_prefix      = (known after apply)
+      + path             = "/"
+      + policy           = (known after apply)
+      + policy_id        = (known after apply)
+      + tags_all         = (known after apply)
+    }
+
+  # module.bedrock_role.aws_iam_policy.bedrock_permissions will be created
+  + resource "aws_iam_policy" "bedrock_permissions" {
+      + arn              = (known after apply)
+      + attachment_count = (known after apply)
+      + id               = (known after apply)
+      + name             = "agentic-ai-bedrock-role-bedrock-policy"
+      + name_prefix      = (known after apply)
+      + path             = "/"
+      + policy           = (known after apply)
+      + policy_id        = (known after apply)
+      + tags_all         = (known after apply)
+    }
+
+  # module.bedrock_role.aws_iam_policy.bedrock_services_permissions will be created
+  + resource "aws_iam_policy" "bedrock_services_permissions" {
+      + arn              = (known after apply)
+      + attachment_count = (known after apply)
+      + id               = (known after apply)
+      + name             = "agentic-ai-bedrock-role-bedrock-services-policy"
+      + name_prefix      = (known after apply)
+      + path             = "/"
+      + policy           = (known after apply)
+      + policy_id        = (known after apply)
+      + tags_all         = (known after apply)
+    }
+
+  # module.bedrock_role.aws_iam_policy.config_permissions will be created
+  + resource "aws_iam_policy" "config_permissions" {
+      + arn              = (known after apply)
+      + attachment_count = (known after apply)
+      + id               = (known after apply)
+      + name             = "agentic-ai-bedrock-role-config-policy"
+      + name_prefix      = (known after apply)
+      + path             = "/"
+      + policy           = (known after apply)
+      + policy_id        = (known after apply)
+      + tags_all         = (known after apply)
+    }
+
+  # module.bedrock_role.aws_iam_policy.ecr_permissions will be created
+  + resource "aws_iam_policy" "ecr_permissions" {
+      + arn              = (known after apply)
+      + attachment_count = (known after apply)
+      + id               = (known after apply)
+      + name             = "agentic-ai-bedrock-role-ecr-policy"
+      + name_prefix      = (known after apply)
+      + path             = "/"
+      + policy           = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action   = [
+                          + "ecr:BatchGetImage",
+                          + "ecr:GetDownloadUrlForLayer",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = [
+                          + "arn:aws:ecr:us-west-2:504736193889:repository/langgraph-cx-agent",
+                        ]
+                      + Sid      = "ECRImageAccess"
+                    },
+                  + {
+                      + Action   = [
+                          + "ecr:GetAuthorizationToken",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "*"
+                      + Sid      = "ECRTokenAccess"
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + policy_id        = (known after apply)
+      + tags_all         = (known after apply)
+    }
+
+  # module.bedrock_role.aws_iam_policy.logging_permissions will be created
+  + resource "aws_iam_policy" "logging_permissions" {
+      + arn              = (known after apply)
+      + attachment_count = (known after apply)
+      + id               = (known after apply)
+      + name             = "agentic-ai-bedrock-role-logging-policy"
+      + name_prefix      = (known after apply)
+      + path             = "/"
+      + policy           = (known after apply)
+      + policy_id        = (known after apply)
+      + tags_all         = (known after apply)
+    }
+
+  # module.bedrock_role.aws_iam_policy.monitoring_permissions will be created
+  + resource "aws_iam_policy" "monitoring_permissions" {
+      + arn              = (known after apply)
+      + attachment_count = (known after apply)
+      + id               = (known after apply)
+      + name             = "agentic-ai-bedrock-role-monitoring-policy"
+      + name_prefix      = (known after apply)
+      + path             = "/"
+      + policy           = (known after apply)
+      + policy_id        = (known after apply)
+      + tags_all         = (known after apply)
+    }
+
+  # module.bedrock_role.aws_iam_role.bedrock_agentcore_role will be created
+  + resource "aws_iam_role" "bedrock_agentcore_role" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = (known after apply)
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "agentic-ai-bedrock-role"
+      + name_prefix           = (known after apply)
+      + path                  = "/"
+      + tags_all              = (known after apply)
+      + unique_id             = (known after apply)
+
+      + inline_policy (known after apply)
+    }
+
+  # module.bedrock_role.aws_iam_role_policy_attachment.agentcore_permissions will be created
+  + resource "aws_iam_role_policy_attachment" "agentcore_permissions" {
+      + id         = (known after apply)
+      + policy_arn = (known after apply)
+      + role       = "agentic-ai-bedrock-role"
+    }
+
+  # module.bedrock_role.aws_iam_role_policy_attachment.bedrock_permissions will be created
+  + resource "aws_iam_role_policy_attachment" "bedrock_permissions" {
+      + id         = (known after apply)
+      + policy_arn = (known after apply)
+      + role       = "agentic-ai-bedrock-role"
+    }
+
+  # module.bedrock_role.aws_iam_role_policy_attachment.bedrock_services_permissions will be created
+  + resource "aws_iam_role_policy_attachment" "bedrock_services_permissions" {
+      + id         = (known after apply)
+      + policy_arn = (known after apply)
+      + role       = "agentic-ai-bedrock-role"
+    }
+
+  # module.bedrock_role.aws_iam_role_policy_attachment.config_permissions will be created
+  + resource "aws_iam_role_policy_attachment" "config_permissions" {
+      + id         = (known after apply)
+      + policy_arn = (known after apply)
+      + role       = "agentic-ai-bedrock-role"
+    }
+
+  # module.bedrock_role.aws_iam_role_policy_attachment.ecr_permissions will be created
+  + resource "aws_iam_role_policy_attachment" "ecr_permissions" {
+      + id         = (known after apply)
+      + policy_arn = (known after apply)
+      + role       = "agentic-ai-bedrock-role"
+    }
+
+  # module.bedrock_role.aws_iam_role_policy_attachment.logging_permissions will be created
+  + resource "aws_iam_role_policy_attachment" "logging_permissions" {
+      + id         = (known after apply)
+      + policy_arn = (known after apply)
+      + role       = "agentic-ai-bedrock-role"
+    }
+
+  # module.bedrock_role.aws_iam_role_policy_attachment.monitoring_permissions will be created
+  + resource "aws_iam_role_policy_attachment" "monitoring_permissions" {
+      + id         = (known after apply)
+      + policy_arn = (known after apply)
+      + role       = "agentic-ai-bedrock-role"
+    }
+
+  # module.parameters.aws_kms_alias.parameter_key will be created
+  + resource "aws_kms_alias" "parameter_key" {
+      + arn            = (known after apply)
+      + id             = (known after apply)
+      + name           = "alias/ssm-parameters"
+      + name_prefix    = (known after apply)
+      + region         = "us-west-2"
+      + target_key_arn = (known after apply)
+      + target_key_id  = (known after apply)
+    }
+
+  # module.parameters.aws_kms_key.parameter_key will be created
+  + resource "aws_kms_key" "parameter_key" {
+      + arn                                = (known after apply)
+      + bypass_policy_lockout_safety_check = false
+      + customer_master_key_spec           = "SYMMETRIC_DEFAULT"
+      + description                        = "KMS key for SSM parameters encryption"
+      + enable_key_rotation                = false
+      + id                                 = (known after apply)
+      + is_enabled                         = true
+      + key_id                             = (known after apply)
+      + key_usage                          = "ENCRYPT_DECRYPT"
+      + multi_region                       = (known after apply)
+      + policy                             = (known after apply)
+      + region                             = "us-west-2"
+      + rotation_period_in_days            = (known after apply)
+      + tags_all                           = (known after apply)
+    }
+
+  # module.parameters.aws_ssm_parameter.ac_stm_memory_id will be created
+  + resource "aws_ssm_parameter" "ac_stm_memory_id" {
+      + arn            = (known after apply)
+      + data_type      = (known after apply)
+      + has_value_wo   = (known after apply)
+      + id             = (known after apply)
+      + insecure_value = (known after apply)
+      + key_id         = (known after apply)
+      + name           = "/amazon/ac_stm_memory_id"
+      + region         = "us-west-2"
+      + tags_all       = (known after apply)
+      + tier           = (known after apply)
+      + type           = "SecureString"
+      + value          = (sensitive value)
+      + value_wo       = (write-only attribute)
+      + version        = (known after apply)
+    }
+
+  # module.parameters.aws_ssm_parameter.client_id will be created
+  + resource "aws_ssm_parameter" "client_id" {
+      + arn            = (known after apply)
+      + data_type      = (known after apply)
+      + has_value_wo   = (known after apply)
+      + id             = (known after apply)
+      + insecure_value = (known after apply)
+      + key_id         = (known after apply)
+      + name           = "/cognito/client_id"
+      + region         = "us-west-2"
+      + tags_all       = (known after apply)
+      + tier           = (known after apply)
+      + type           = "SecureString"
+      + value          = (sensitive value)
+      + value_wo       = (write-only attribute)
+      + version        = (known after apply)
+    }
+
+  # module.parameters.aws_ssm_parameter.gateway_url will be created
+  + resource "aws_ssm_parameter" "gateway_url" {
+      + arn            = (known after apply)
+      + data_type      = (known after apply)
+      + has_value_wo   = (known after apply)
+      + id             = (known after apply)
+      + insecure_value = (known after apply)
+      + key_id         = (known after apply)
+      + name           = "/amazon/gateway_url"
+      + region         = "us-west-2"
+      + tags_all       = (known after apply)
+      + tier           = (known after apply)
+      + type           = "SecureString"
+      + value          = (sensitive value)
+      + value_wo       = (write-only attribute)
+      + version        = (known after apply)
+    }
+
+  # module.parameters.aws_ssm_parameter.guardrail_id will be created
+  + resource "aws_ssm_parameter" "guardrail_id" {
+      + arn            = (known after apply)
+      + data_type      = (known after apply)
+      + has_value_wo   = (known after apply)
+      + id             = (known after apply)
+      + insecure_value = (known after apply)
+      + key_id         = (known after apply)
+      + name           = "/amazon/guardrail_id"
+      + region         = "us-west-2"
+      + tags_all       = (known after apply)
+      + tier           = (known after apply)
+      + type           = "SecureString"
+      + value          = (sensitive value)
+      + value_wo       = (write-only attribute)
+      + version        = (known after apply)
+    }
+
+  # module.parameters.aws_ssm_parameter.kb_id will be created
+  + resource "aws_ssm_parameter" "kb_id" {
+      + arn            = (known after apply)
+      + data_type      = (known after apply)
+      + has_value_wo   = (known after apply)
+      + id             = (known after apply)
+      + insecure_value = (known after apply)
+      + key_id         = (known after apply)
+      + name           = "/amazon/kb_id"
+      + region         = "us-west-2"
+      + tags_all       = (known after apply)
+      + tier           = (known after apply)
+      + type           = "SecureString"
+      + value          = (sensitive value)
+      + value_wo       = (write-only attribute)
+      + version        = (known after apply)
+    }
+
+  # module.parameters.aws_ssm_parameter.oauth_token_url will be created
+  + resource "aws_ssm_parameter" "oauth_token_url" {
+      + arn            = (known after apply)
+      + data_type      = (known after apply)
+      + has_value_wo   = (known after apply)
+      + id             = (known after apply)
+      + insecure_value = (known after apply)
+      + key_id         = (known after apply)
+      + name           = "/cognito/oauth_token_url"
+      + region         = "us-west-2"
+      + tags_all       = (known after apply)
+      + tier           = (known after apply)
+      + type           = "SecureString"
+      + value          = (sensitive value)
+      + value_wo       = (write-only attribute)
+      + version        = (known after apply)
+    }
+
+  # module.parameters.aws_ssm_parameter.user_pool_id will be created
+  + resource "aws_ssm_parameter" "user_pool_id" {
+      + arn            = (known after apply)
+      + data_type      = (known after apply)
+      + has_value_wo   = (known after apply)
+      + id             = (known after apply)
+      + insecure_value = (known after apply)
+      + key_id         = (known after apply)
+      + name           = "/cognito/user_pool_id"
+      + region         = "us-west-2"
+      + tags_all       = (known after apply)
+      + tier           = (known after apply)
+      + type           = "SecureString"
+      + value          = (sensitive value)
+      + value_wo       = (write-only attribute)
+      + version        = (known after apply)
+    }
+
+  # module.kb_stack.module.opensearch.opensearch_index.vector_index[0] will be created
+  + resource "opensearch_index" "vector_index" {
+      + force_destroy                  = true
+      + id                             = (known after apply)
+      + index_knn                      = true
+      + index_knn_algo_param_ef_search = "512"
+      + mappings                       = jsonencode(
+            {
+              + properties = {
+                  + AMAZON_BEDROCK_METADATA               = {
+                      + type = "text"
+                    }
+                  + AMAZON_BEDROCK_TEXT_CHUNK             = {
+                      + type = "text"
+                    }
+                  + bedrock-knowledge-base-default-vector = {
+                      + dimension = 1024
+                      + method    = {
+                          + engine     = "faiss"
+                          + name       = "hnsw"
+                          + parameters = {
+                              + ef_construction = 512
+                              + m               = 16
+                            }
+                          + space_type = "l2"
+                        }
+                      + type      = "knn_vector"
+                    }
+                }
+            }
+        )
+      + name                           = "os-vector-index-agentic-ai-kb"
+      + number_of_replicas             = "0"
+      + number_of_shards               = "1"
+      + rollover_alias                 = (known after apply)
+        # (5 unchanged attributes hidden)
+    }
+
+Plan: 26 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  ~ agent_runtime_arn   = "arn:aws:bedrock-agentcore:us-west-2:504736193889:runtime/langgraph_cx_agent-EX60Xr3XSv" -> (known after apply)
+  ~ bedrock_role_arn    = "arn:aws:iam::504736193889:role/agentic-ai-bedrock-role" -> (known after apply)
+module.kb_stack.module.opensearch.opensearch_index.vector_index[0]: Creating...
+module.kb_stack.module.opensearch.opensearch_index.vector_index[0]: Creation complete after 0s [id=os-vector-index-agentic-ai-kb]
+module.parameters.aws_kms_key.parameter_key: Creating...
+module.parameters.aws_kms_key.parameter_key: Creation complete after 0s [id=b05cff84-2be1-4dff-bfe8-16db6a842ec3]
+module.parameters.aws_ssm_parameter.gateway_url: Creating...
+module.parameters.aws_ssm_parameter.user_pool_id: Creating...
+module.parameters.aws_ssm_parameter.oauth_token_url: Creating...
+module.parameters.aws_ssm_parameter.client_id: Creating...
+module.parameters.aws_kms_alias.parameter_key: Creating...
+module.parameters.aws_ssm_parameter.guardrail_id: Creating...
+module.parameters.aws_ssm_parameter.kb_id: Creating...
+module.parameters.aws_ssm_parameter.ac_stm_memory_id: Creating...
+module.parameters.aws_kms_alias.parameter_key: Creation complete after 0s [id=alias/ssm-parameters]
+module.parameters.aws_ssm_parameter.guardrail_id: Creation complete after 0s [id=/amazon/guardrail_id]
+module.parameters.aws_ssm_parameter.user_pool_id: Creation complete after 0s [id=/cognito/user_pool_id]
+module.parameters.aws_ssm_parameter.oauth_token_url: Creation complete after 0s [id=/cognito/oauth_token_url]
+module.parameters.aws_ssm_parameter.ac_stm_memory_id: Creation complete after 0s [id=/amazon/ac_stm_memory_id]
+module.parameters.aws_ssm_parameter.client_id: Creation complete after 0s [id=/cognito/client_id]
+module.parameters.aws_ssm_parameter.kb_id: Creation complete after 0s [id=/amazon/kb_id]
+module.parameters.aws_ssm_parameter.gateway_url: Creation complete after 0s [id=/amazon/gateway_url]
+module.bedrock_role.data.aws_region.current: Reading...
+module.bedrock_role.data.aws_caller_identity.current: Reading...
+module.bedrock_role.data.aws_region.current: Read complete after 0s [id=us-west-2]
+module.bedrock_role.data.aws_caller_identity.current: Read complete after 0s [id=504736193889]
+module.bedrock_role.aws_iam_policy.ecr_permissions: Creating...
+module.bedrock_role.aws_iam_policy.logging_permissions: Creating...
+module.bedrock_role.aws_iam_policy.monitoring_permissions: Creating...
+module.bedrock_role.aws_iam_policy.bedrock_permissions: Creating...
+module.bedrock_role.aws_iam_policy.config_permissions: Creating...
+module.bedrock_role.aws_iam_policy.bedrock_services_permissions: Creating...
+module.bedrock_role.aws_iam_role.bedrock_agentcore_role: Creating...
+module.bedrock_role.aws_iam_policy.agentcore_permissions: Creating...
+module.bedrock_role.aws_iam_policy.ecr_permissions: Creation complete after 0s [id=arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-ecr-policy]
+module.bedrock_role.aws_iam_policy.config_permissions: Creation complete after 0s [id=arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-config-policy]
+module.bedrock_role.aws_iam_policy.bedrock_permissions: Creation complete after 1s [id=arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-bedrock-policy]
+module.bedrock_role.aws_iam_policy.agentcore_permissions: Creation complete after 1s [id=arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-agentcore-policy]
+module.bedrock_role.aws_iam_policy.bedrock_services_permissions: Creation complete after 1s [id=arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-bedrock-services-policy]
+module.bedrock_role.aws_iam_policy.monitoring_permissions: Creation complete after 1s [id=arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-monitoring-policy]
+module.bedrock_role.aws_iam_role.bedrock_agentcore_role: Creation complete after 1s [id=agentic-ai-bedrock-role]
+module.bedrock_role.aws_iam_policy.logging_permissions: Creation complete after 1s [id=arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-logging-policy]
+module.bedrock_role.aws_iam_role_policy_attachment.bedrock_services_permissions: Creating...
+module.bedrock_role.aws_iam_role_policy_attachment.bedrock_permissions: Creating...
+module.bedrock_role.aws_iam_role_policy_attachment.ecr_permissions: Creating...
+module.bedrock_role.aws_iam_role_policy_attachment.logging_permissions: Creating...
+module.bedrock_role.aws_iam_role_policy_attachment.agentcore_permissions: Creating...
+module.bedrock_role.aws_iam_role_policy_attachment.config_permissions: Creating...
+module.bedrock_role.aws_iam_role_policy_attachment.monitoring_permissions: Creating...
+aws_bedrockagentcore_agent_runtime.agent_runtime: Creating...
+module.bedrock_role.aws_iam_role_policy_attachment.monitoring_permissions: Creation complete after 0s [id=agentic-ai-bedrock-role/arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-monitoring-policy]
+module.bedrock_role.aws_iam_role_policy_attachment.agentcore_permissions: Creation complete after 0s [id=agentic-ai-bedrock-role/arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-agentcore-policy]
+module.bedrock_role.aws_iam_role_policy_attachment.bedrock_services_permissions: Creation complete after 0s [id=agentic-ai-bedrock-role/arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-bedrock-services-policy]
+module.bedrock_role.aws_iam_role_policy_attachment.logging_permissions: Creation complete after 0s [id=agentic-ai-bedrock-role/arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-logging-policy]
+module.bedrock_role.aws_iam_role_policy_attachment.bedrock_permissions: Creation complete after 0s [id=agentic-ai-bedrock-role/arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-bedrock-policy]
+module.bedrock_role.aws_iam_role_policy_attachment.ecr_permissions: Creation complete after 0s [id=agentic-ai-bedrock-role/arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-ecr-policy]
+module.bedrock_role.aws_iam_role_policy_attachment.config_permissions: Creation complete after 0s [id=agentic-ai-bedrock-role/arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-config-policy]
+aws_bedrockagentcore_agent_runtime.agent_runtime: Still creating... [00m10s elapsed]
+aws_bedrockagentcore_agent_runtime.agent_runtime: Creation complete after 19s
+
+Warning: Value for undeclared variable
+
+The root module does not declare a variable named "kb_bucket_name" but a
+value was found in file "terraform.tfvars". If you meant to use this value,
+add a "variable" block to the configuration.
+
+To silence these warnings, use TF_VAR_... environment variables to provide
+certain "global" settings to all configurations in your organization. To
+reduce the verbosity of these warnings, use the -compact-warnings option.
+
+Warning: Deprecated value used
+
+  with aws_iam_role_policy.gateway_policy,
+  on main.tf line 283, in resource "aws_iam_role_policy" "gateway_policy":
+ 283:   policy = jsonencode({
+ 284:     Version = "2012-10-17"
+ 285:     Statement = [
+ 286:       {
+ 287:         Effect = "Allow"
+ 288:         Action = [
+ 289:           "logs:CreateLogGroup",
+ 290:           "logs:CreateLogStream",
+ 291:           "logs:PutLogEvents"
+ 292:         ]
+ 293:         Resource = "arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:/aws/bedrock-agentcore/*"
+ 294:       },
+ 295:       {
+ 296:         Effect = "Allow"
+ 297:         Action = ["lambda:InvokeFunction"]
+ 298:         Resource = [
+ 299:           aws_lambda_function.gateway_interceptor.arn,
+ 300:         ]
+ 301:       }
+ 302:     ]
+ 303:   })
+
+  The deprecation originates from data.aws_region.current.name
+
+Deprecated resource attribute "name" used. Refer to the provider
+documentation for details.
+
+(and 34 more similar warnings elsewhere)
+
+Apply complete! Resources: 26 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+agent_runtime_arn = "arn:aws:bedrock-agentcore:us-west-2:504736193889:runtime/langgraph_cx_agent-6oVCIK724N"
+bedrock_role_arn = "arn:aws:iam::504736193889:role/agentic-ai-bedrock-role"
+client_id = "58cbfkr9qaleptejutb6gn5lof"
+client_secret = <sensitive>
+data_source_id = "NSRZKRQIJ0"
+gateway_id = "cx-agent-gateway-op06voht5h"
+gateway_url = "https://cx-agent-gateway-op06voht5h.gateway.bedrock-agentcore.us-west-2.amazonaws.com/mcp"
+guardrail_id = "uys8g2wq9tiv"
+knowledge_base_id = "3IIQRVNCQB"
+oauth_token_url = "https://agentic-ai-user-pool-3npaw9a1.auth.us-west-2.amazoncognito.com/oauth2/token"
+s3_bucket_name = "agentic-ai-kb20260924034442869300000002"
+user_pool_client_id = "58cbfkr9qaleptejutb6gn5lof"
+user_pool_id = "us-west-2_EnNhLHFPx"

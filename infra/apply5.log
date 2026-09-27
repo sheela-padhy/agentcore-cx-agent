@@ -1,0 +1,697 @@
+module.cognito.random_string.domain_suffix: Refreshing state... [id=3npaw9a1]
+data.archive_file.interceptor_lambda_zip: Reading...
+data.archive_file.interceptor_lambda_zip: Read complete after 0s [id=76b2b13ce1e650d194dc272e28e9bfef51aed4da]
+module.kb_stack.module.opensearch.data.aws_region.current: Reading...
+data.aws_region.current: Reading...
+module.container_image.data.aws_caller_identity.current: Reading...
+data.aws_caller_identity.current: Reading...
+module.cognito.data.aws_region.current: Reading...
+module.container_image.aws_ecr_repository.ecr_repository: Refreshing state... [id=langgraph-cx-agent]
+module.kb_stack.module.opensearch.aws_opensearchserverless_security_policy.nw_policy[0]: Refreshing state... [id=nw-policy-agentic-ai-kb]
+module.kb_stack.module.opensearch.aws_opensearchserverless_security_policy.security_policy: Refreshing state... [id=security-policy-agentic-ai-kb]
+data.aws_iam_policy_document.gateway_assume_role: Reading...
+module.guardrail.aws_bedrock_guardrail.guardrail: Refreshing state... [name=agentic-ai-guardrail]
+data.aws_region.current: Read complete after 0s [id=us-west-2]
+module.kb_stack.module.opensearch.data.aws_region.current: Read complete after 0s [id=us-west-2]
+module.kb_stack.module.knowledge_base.data.aws_region.current: Reading...
+module.cognito.data.aws_region.current: Read complete after 0s [id=us-west-2]
+data.aws_iam_policy_document.gateway_assume_role: Read complete after 0s [id=4217861921]
+data.aws_caller_identity.current: Read complete after 0s [id=504736193889]
+module.container_image.data.aws_caller_identity.current: Read complete after 0s [id=504736193889]
+aws_iam_role.interceptor_lambda_role: Refreshing state... [id=cx-gateway-interceptor-lambda-role]
+module.kb_stack.module.knowledge_base.data.aws_region.current: Read complete after 0s [id=us-west-2]
+module.kb_stack.aws_s3_bucket.access_logs: Refreshing state... [id=agentic-ai-kb-access-logs20260924034442862800000001]
+aws_bedrockagentcore_memory.agent_memory: Refreshing state... [id=CxMemory-zdu0OgFYk4]
+aws_dynamodb_table.rate_limit_table: Refreshing state... [id=agentcore-gateway-rate-limits]
+module.kb_stack.aws_iam_role.bedrock_role: Refreshing state... [id=agentic-ai-kb-bedrock-role]
+aws_sqs_queue.interceptor_dlq: Refreshing state... [id=https://sqs.us-west-2.amazonaws.com/504736193889/cx-gateway-interceptor-dlq]
+module.kb_stack.module.opensearch.data.aws_caller_identity.current: Reading...
+module.kb_stack.module.opensearch.data.aws_caller_identity.current: Read complete after 0s [id=504736193889]
+module.kb_stack.aws_s3_bucket.kb_bucket: Refreshing state... [id=agentic-ai-kb20260924034442869300000002]
+module.container_image.data.aws_region.current: Reading...
+module.container_image.data.aws_region.current: Read complete after 0s [id=us-west-2]
+module.cognito.aws_cognito_user_pool.user_pool: Refreshing state... [id=us-west-2_EnNhLHFPx]
+aws_iam_role.gateway_role: Refreshing state... [id=bedrock-agentcore-gateway-role]
+module.kb_stack.module.opensearch.data.aws_iam_session_context.current: Reading...
+module.container_image.terraform_data.ecr_image: Refreshing state... [id=af39f4da-68f3-9414-43da-8b105ab51a22]
+module.kb_stack.aws_s3_bucket_public_access_block.access_logs_pab: Refreshing state... [id=agentic-ai-kb-access-logs20260924034442862800000001]
+module.kb_stack.aws_s3_bucket_lifecycle_configuration.access_logs_lifecycle: Refreshing state... [id=agentic-ai-kb-access-logs20260924034442862800000001]
+module.kb_stack.aws_s3_bucket_versioning.access_logs_versioning: Refreshing state... [id=agentic-ai-kb-access-logs20260924034442862800000001]
+module.kb_stack.aws_s3_bucket_server_side_encryption_configuration.access_logs_encryption: Refreshing state... [id=agentic-ai-kb-access-logs20260924034442862800000001]
+module.kb_stack.module.opensearch.data.aws_iam_session_context.current: Read complete after 0s [id=arn:aws:sts::504736193889:assumed-role/sheela-cx-agent-ec2-role/i-011c9de2a3eb7dc88]
+module.kb_stack.module.opensearch.awscc_opensearchserverless_collection.os_collection: Refreshing state... [id=p6ypn8ceeql30vhg1i4f]
+module.kb_stack.aws_s3_bucket_versioning.kb_bucket_versioning: Refreshing state... [id=agentic-ai-kb20260924034442869300000002]
+module.kb_stack.aws_s3_bucket_server_side_encryption_configuration.kb_bucket_encryption: Refreshing state... [id=agentic-ai-kb20260924034442869300000002]
+module.kb_stack.aws_s3_bucket_public_access_block.kb_bucket_pab: Refreshing state... [id=agentic-ai-kb20260924034442869300000002]
+module.kb_stack.aws_s3_bucket_logging.kb_bucket_logging: Refreshing state... [id=agentic-ai-kb20260924034442869300000002]
+module.kb_stack.aws_s3_bucket_lifecycle_configuration.kb_bucket_lifecycle: Refreshing state... [id=agentic-ai-kb20260924034442869300000002]
+module.cognito.aws_cognito_resource_server.resource_server: Refreshing state... [id=us-west-2_EnNhLHFPx|gateway-api]
+module.cognito.aws_cognito_user_pool_domain.user_pool_domain: Refreshing state... [id=agentic-ai-user-pool-3npaw9a1]
+module.cognito.aws_cognito_user_pool_client.user_pool_client: Refreshing state... [id=58cbfkr9qaleptejutb6gn5lof]
+module.kb_stack.module.opensearch.aws_opensearchserverless_access_policy.data_policy: Refreshing state... [id=os-access-policy-agentic-ai-kb]
+module.kb_stack.module.knowledge_base.aws_iam_role_policy.bedrock_kb_sample_kb_model: Refreshing state... [id=agentic-ai-kb-bedrock-role:AmazonBedrockOSSPolicyForKnowledgeBase_agentic-ai-kb]
+module.secrets.data.archive_file.rotation_lambda_zip: Reading...
+module.secrets.aws_iam_role.rotation_lambda_role: Refreshing state... [id=secrets-rotation-lambda-role]
+module.secrets.aws_kms_key.secrets_key: Refreshing state... [id=dcf5b1f3-8bcd-4a97-a356-cee4fd65cae2]
+module.secrets.data.archive_file.rotation_lambda_zip: Read complete after 0s [id=147cde06de41f605922abf8e0f3213c3d5023cd9]
+aws_iam_role_policy.interceptor_dynamodb_policy: Refreshing state... [id=cx-gateway-interceptor-lambda-role:interceptor-dynamodb-rate-limit]
+aws_iam_role_policy.interceptor_bedrock_policy: Refreshing state... [id=cx-gateway-interceptor-lambda-role:interceptor-bedrock-guardrails]
+aws_lambda_function.gateway_interceptor: Refreshing state... [id=cx-gateway-interceptor]
+aws_iam_role_policy_attachment.interceptor_basic: Refreshing state... [id=cx-gateway-interceptor-lambda-role/arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole]
+aws_iam_role_policy.interceptor_dlq_policy: Refreshing state... [id=cx-gateway-interceptor-lambda-role:interceptor-dlq-send]
+aws_iam_role_policy_attachment.interceptor_xray: Refreshing state... [id=cx-gateway-interceptor-lambda-role/arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess]
+module.secrets.aws_kms_alias.secrets_key: Refreshing state... [id=alias/secrets-manager]
+module.secrets.aws_secretsmanager_secret.gateway_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:gateway_credentials-ized26]
+module.secrets.aws_secretsmanager_secret.cognito_client_secret: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:cognito_client_secret-Yf38gs]
+module.secrets.aws_secretsmanager_secret.zendesk_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:zendesk_credentials-pfgrAs]
+module.secrets.aws_secretsmanager_secret.langfuse_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:langfuse_credentials-n2ca3R]
+module.kb_stack.module.opensearch.time_sleep.wait_before_index_creation[0]: Refreshing state... [id=2026-09-24T03:50:43Z]
+module.kb_stack.module.knowledge_base.time_sleep.iam_consistency_delay: Refreshing state... [id=2026-09-24T03:53:44Z]
+module.secrets.aws_secretsmanager_secret_version.cognito_client_secret: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:cognito_client_secret-Yf38gs|terraform-2026092403444693760000000c]
+module.secrets.aws_secretsmanager_secret_version.gateway_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:gateway_credentials-ized26|terraform-2026092403444662820000000a]
+module.kb_stack.module.opensearch.opensearch_index.vector_index[0]: Refreshing state... [id=os-vector-index-agentic-ai-kb]
+module.kb_stack.module.knowledge_base.aws_bedrockagent_knowledge_base.sample_kb: Refreshing state... [id=3IIQRVNCQB]
+module.secrets.aws_secretsmanager_secret_version.langfuse_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:langfuse_credentials-n2ca3R|terraform-2026092403444686300000000b]
+module.secrets.aws_secretsmanager_secret_version.zendesk_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:zendesk_credentials-pfgrAs|terraform-2026092403444714900000000d]
+aws_iam_role_policy.gateway_policy: Refreshing state... [id=bedrock-agentcore-gateway-role:gateway-external-api-policy]
+aws_bedrockagentcore_gateway.cx_gateway: Refreshing state... [name=cx-agent-gateway]
+module.secrets.aws_iam_role_policy.rotation_lambda_secrets: Refreshing state... [id=secrets-rotation-lambda-role:secrets-rotation-policy]
+module.secrets.aws_iam_role_policy_attachment.rotation_lambda_basic: Refreshing state... [id=secrets-rotation-lambda-role/arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole]
+module.secrets.aws_lambda_function.rotation_lambda: Refreshing state... [id=secrets-rotation-lambda]
+module.secrets.aws_iam_role_policy_attachment.rotation_lambda_xray: Refreshing state... [id=secrets-rotation-lambda-role/arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess]
+aws_lambda_permission.allow_gateway_interceptor: Refreshing state... [id=AllowAgentCoreGatewayInterceptor]
+module.kb_stack.module.knowledge_base.aws_bedrockagent_data_source.sample_kb: Refreshing state... [id=NSRZKRQIJ0,3IIQRVNCQB]
+module.secrets.aws_secretsmanager_secret_rotation.gateway_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:gateway_credentials-ized26]
+module.secrets.aws_lambda_permission.allow_secrets_manager: Refreshing state... [id=AllowExecutionFromSecretsManager]
+module.secrets.aws_secretsmanager_secret_rotation.cognito_client_secret: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:cognito_client_secret-Yf38gs]
+module.secrets.aws_secretsmanager_secret_rotation.zendesk_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:zendesk_credentials-pfgrAs]
+module.secrets.aws_secretsmanager_secret_rotation.langfuse_credentials: Refreshing state... [id=arn:aws:secretsmanager:us-west-2:504736193889:secret:langfuse_credentials-n2ca3R]
+module.parameters.aws_kms_key.parameter_key: Refreshing state... [id=74bac806-3813-46c2-a0cc-b427ea964ac9]
+module.parameters.aws_ssm_parameter.user_pool_id: Refreshing state... [id=/cognito/user_pool_id]
+module.parameters.aws_ssm_parameter.oauth_token_url: Refreshing state... [id=/cognito/oauth_token_url]
+module.parameters.aws_kms_alias.parameter_key: Refreshing state... [id=alias/ssm-parameters]
+module.parameters.aws_ssm_parameter.gateway_url: Refreshing state... [id=/amazon/gateway_url]
+module.parameters.aws_ssm_parameter.client_id: Refreshing state... [id=/cognito/client_id]
+module.parameters.aws_ssm_parameter.kb_id: Refreshing state... [id=/amazon/kb_id]
+module.parameters.aws_ssm_parameter.guardrail_id: Refreshing state... [id=/amazon/guardrail_id]
+module.parameters.aws_ssm_parameter.ac_stm_memory_id: Refreshing state... [id=/amazon/ac_stm_memory_id]
+module.bedrock_role.aws_iam_policy.config_permissions: Refreshing state... [id=arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-config-policy]
+module.bedrock_role.aws_iam_policy.logging_permissions: Refreshing state... [id=arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-logging-policy]
+module.bedrock_role.aws_iam_policy.monitoring_permissions: Refreshing state... [id=arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-monitoring-policy]
+module.bedrock_role.aws_iam_policy.ecr_permissions: Refreshing state... [id=arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-ecr-policy]
+module.bedrock_role.aws_iam_policy.agentcore_permissions: Refreshing state... [id=arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-agentcore-policy]
+module.bedrock_role.aws_iam_policy.bedrock_permissions: Refreshing state... [id=arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-bedrock-policy]
+module.bedrock_role.aws_iam_policy.bedrock_services_permissions: Refreshing state... [id=arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-bedrock-services-policy]
+module.bedrock_role.aws_iam_role.bedrock_agentcore_role: Refreshing state... [id=agentic-ai-bedrock-role]
+module.bedrock_role.aws_iam_role_policy_attachment.bedrock_services_permissions: Refreshing state... [id=agentic-ai-bedrock-role/arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-bedrock-services-policy]
+module.bedrock_role.aws_iam_role_policy_attachment.ecr_permissions: Refreshing state... [id=agentic-ai-bedrock-role/arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-ecr-policy]
+module.bedrock_role.aws_iam_role_policy_attachment.agentcore_permissions: Refreshing state... [id=agentic-ai-bedrock-role/arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-agentcore-policy]
+module.bedrock_role.aws_iam_role_policy_attachment.monitoring_permissions: Refreshing state... [id=agentic-ai-bedrock-role/arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-monitoring-policy]
+module.bedrock_role.aws_iam_role_policy_attachment.logging_permissions: Refreshing state... [id=agentic-ai-bedrock-role/arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-logging-policy]
+module.bedrock_role.aws_iam_role_policy_attachment.bedrock_permissions: Refreshing state... [id=agentic-ai-bedrock-role/arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-bedrock-policy]
+module.bedrock_role.aws_iam_role_policy_attachment.config_permissions: Refreshing state... [id=agentic-ai-bedrock-role/arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-config-policy]
+aws_bedrockagentcore_agent_runtime.agent_runtime: Refreshing state...
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  ~ update in-place
+-/+ destroy and then create replacement
+ <= read (data resources)
+
+Terraform will perform the following actions:
+
+  # aws_bedrockagentcore_agent_runtime.agent_runtime will be updated in-place
+  ~ resource "aws_bedrockagentcore_agent_runtime" "agent_runtime" {
+      ~ agent_runtime_version     = "9" -> (known after apply)
+        # (10 unchanged attributes hidden)
+
+      ~ agent_runtime_artifact {
+          ~ container_configuration {
+              ~ container_uri = "504736193889.dkr.ecr.us-west-2.amazonaws.com/langgraph-cx-agent:latest" -> (known after apply)
+            }
+        }
+
+        # (2 unchanged blocks hidden)
+    }
+
+  # module.bedrock_role.data.aws_caller_identity.current will be read during apply
+  # (depends on a resource or a module with changes pending)
+ <= data "aws_caller_identity" "current" {
+      + account_id = (known after apply)
+      + arn        = (known after apply)
+      + id         = (known after apply)
+      + user_id    = (known after apply)
+    }
+
+  # module.bedrock_role.data.aws_region.current will be read during apply
+  # (depends on a resource or a module with changes pending)
+ <= data "aws_region" "current" {
+      + description = (known after apply)
+      + endpoint    = (known after apply)
+      + id          = (known after apply)
+      + name        = (known after apply)
+      + region      = (known after apply)
+    }
+
+  # module.bedrock_role.aws_iam_policy.agentcore_permissions will be updated in-place
+  ~ resource "aws_iam_policy" "agentcore_permissions" {
+        id               = "arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-agentcore-policy"
+        name             = "agentic-ai-bedrock-role-agentcore-policy"
+      ~ policy           = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = [
+                          - "bedrock-agentcore:GetWorkloadAccessToken",
+                          - "bedrock-agentcore:GetWorkloadAccessTokenForJWT",
+                          - "bedrock-agentcore:GetWorkloadAccessTokenForUserId",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:bedrock-agentcore:us-west-2:504736193889:workload-identity-directory/default",
+                          - "arn:aws:bedrock-agentcore:us-west-2:504736193889:workload-identity-directory/default/workload-identity/*",
+                        ]
+                      - Sid      = "GetAgentAccessToken"
+                    },
+                  - {
+                      - Action   = [
+                          - "bedrock-agentcore:BatchCreateMemoryRecords",
+                          - "bedrock-agentcore:BatchDeleteMemoryRecords",
+                          - "bedrock-agentcore:BatchUpdateMemoryRecords",
+                          - "bedrock-agentcore:CreateEvent",
+                          - "bedrock-agentcore:DeleteEvent",
+                          - "bedrock-agentcore:DeleteMemoryRecord",
+                          - "bedrock-agentcore:GetEvent",
+                          - "bedrock-agentcore:GetMemory",
+                          - "bedrock-agentcore:GetMemoryRecord",
+                          - "bedrock-agentcore:ListActors",
+                          - "bedrock-agentcore:ListEvents",
+                          - "bedrock-agentcore:ListMemoryRecords",
+                          - "bedrock-agentcore:ListSessions",
+                          - "bedrock-agentcore:ListTagsForResource",
+                          - "bedrock-agentcore:RetrieveMemoryRecords",
+                          - "bedrock-agentcore:TagResource",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:bedrock-agentcore:us-west-2:504736193889:memory/CxMemory-zdu0OgFYk4",
+                        ]
+                      - Sid      = "AccessMemory"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        tags             = {}
+        # (7 unchanged attributes hidden)
+    }
+
+  # module.bedrock_role.aws_iam_policy.bedrock_permissions will be updated in-place
+  ~ resource "aws_iam_policy" "bedrock_permissions" {
+        id               = "arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-bedrock-policy"
+        name             = "agentic-ai-bedrock-role-bedrock-policy"
+      ~ policy           = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = [
+                          - "bedrock:InvokeModel",
+                          - "bedrock:InvokeModelWithResponseStream",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:bedrock:*::foundation-model/anthropic.*",
+                          - "arn:aws:bedrock:*::foundation-model/amazon.*",
+                          - "arn:aws:bedrock:*::foundation-model/meta.*",
+                          - "arn:aws:bedrock:us-west-2:504736193889:inference-profile/*",
+                        ]
+                      - Sid      = "BedrockPermissions"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        tags             = {}
+        # (7 unchanged attributes hidden)
+    }
+
+  # module.bedrock_role.aws_iam_policy.bedrock_services_permissions will be updated in-place
+  ~ resource "aws_iam_policy" "bedrock_services_permissions" {
+        id               = "arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-bedrock-services-policy"
+        name             = "agentic-ai-bedrock-role-bedrock-services-policy"
+      ~ policy           = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = [
+                          - "bedrock:Retrieve",
+                          - "bedrock:RetrieveAndGenerate",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:bedrock:us-west-2:504736193889:knowledge-base/3IIQRVNCQB",
+                        ]
+                    },
+                  - {
+                      - Action   = [
+                          - "bedrock:ApplyGuardrail",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:bedrock:us-west-2:504736193889:guardrail/uys8g2wq9tiv",
+                        ]
+                    },
+                  - {
+                      - Action   = [
+                          - "bedrock:InvokeModel",
+                          - "bedrock:InvokeModelWithResponseStream",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:bedrock:us-west-2::foundation-model/*",
+                        ]
+                    },
+                  - {
+                      - Action   = [
+                          - "bedrock-agentcore:InvokeGateway",
+                          - "bedrock-agentcore:ListGatewayTargets",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:bedrock-agentcore:us-west-2:504736193889:gateway/*",
+                        ]
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        tags             = {}
+        # (7 unchanged attributes hidden)
+    }
+
+  # module.bedrock_role.aws_iam_policy.config_permissions will be updated in-place
+  ~ resource "aws_iam_policy" "config_permissions" {
+        id               = "arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-config-policy"
+        name             = "agentic-ai-bedrock-role-config-policy"
+      ~ policy           = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = [
+                          - "ssm:GetParameter",
+                          - "ssm:GetParameters",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:ssm:us-west-2:504736193889:parameter/amazon/*",
+                          - "arn:aws:ssm:us-west-2:504736193889:parameter/cognito/*",
+                        ]
+                    },
+                  - {
+                      - Action   = [
+                          - "secretsmanager:GetSecretValue",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:secretsmanager:us-west-2:504736193889:secret:cognito_client_secret*",
+                          - "arn:aws:secretsmanager:us-west-2:504736193889:secret:zendesk_credentials*",
+                          - "arn:aws:secretsmanager:us-west-2:504736193889:secret:langfuse_credentials*",
+                          - "arn:aws:secretsmanager:us-west-2:504736193889:secret:gateway_credentials*",
+                          - "arn:aws:secretsmanager:us-west-2:504736193889:secret:tavily_key*",
+                        ]
+                    },
+                  - {
+                      - Action   = [
+                          - "kms:Decrypt",
+                          - "kms:DescribeKey",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:kms:us-west-2:504736193889:key/dcf5b1f3-8bcd-4a97-a356-cee4fd65cae2",
+                          - "arn:aws:kms:us-west-2:504736193889:key/74bac806-3813-46c2-a0cc-b427ea964ac9",
+                        ]
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        tags             = {}
+        # (7 unchanged attributes hidden)
+    }
+
+  # module.bedrock_role.aws_iam_policy.logging_permissions will be updated in-place
+  ~ resource "aws_iam_policy" "logging_permissions" {
+        id               = "arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-logging-policy"
+        name             = "agentic-ai-bedrock-role-logging-policy"
+      ~ policy           = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = [
+                          - "logs:DescribeLogStreams",
+                          - "logs:CreateLogGroup",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:logs:us-west-2:504736193889:log-group:/aws/bedrock-agentcore/runtimes/*",
+                        ]
+                    },
+                  - {
+                      - Action   = [
+                          - "logs:DescribeLogGroups",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:logs:us-west-2:504736193889:log-group:*",
+                        ]
+                    },
+                  - {
+                      - Action   = [
+                          - "logs:CreateLogStream",
+                          - "logs:PutLogEvents",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:logs:us-west-2:504736193889:log-group:/aws/bedrock-agentcore/runtimes/*:log-stream:*",
+                        ]
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        tags             = {}
+        # (7 unchanged attributes hidden)
+    }
+
+  # module.bedrock_role.aws_iam_policy.monitoring_permissions will be updated in-place
+  ~ resource "aws_iam_policy" "monitoring_permissions" {
+        id               = "arn:aws:iam::504736193889:policy/agentic-ai-bedrock-role-monitoring-policy"
+        name             = "agentic-ai-bedrock-role-monitoring-policy"
+      ~ policy           = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = [
+                          - "xray:PutTraceSegments",
+                          - "xray:PutTelemetryRecords",
+                          - "xray:GetSamplingRules",
+                          - "xray:GetSamplingTargets",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:xray:us-west-2:504736193889:trace/*",
+                        ]
+                    },
+                  - {
+                      - Action    = "cloudwatch:PutMetricData"
+                      - Condition = {
+                          - StringEquals = {
+                              - "cloudwatch:namespace" = "bedrock-agentcore"
+                            }
+                        }
+                      - Effect    = "Allow"
+                      - Resource  = "*"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        tags             = {}
+        # (7 unchanged attributes hidden)
+    }
+
+  # module.bedrock_role.aws_iam_role.bedrock_agentcore_role will be updated in-place
+  ~ resource "aws_iam_role" "bedrock_agentcore_role" {
+      ~ assume_role_policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Condition = {
+                          - ArnLike      = {
+                              - "aws:SourceArn" = "arn:aws:bedrock-agentcore:us-west-2:504736193889:*"
+                            }
+                          - StringEquals = {
+                              - "aws:SourceAccount" = "504736193889"
+                            }
+                        }
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "bedrock-agentcore.amazonaws.com"
+                        }
+                      - Sid       = "AssumeRolePolicy"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> (known after apply)
+        id                    = "agentic-ai-bedrock-role"
+        name                  = "agentic-ai-bedrock-role"
+        tags                  = {}
+        # (11 unchanged attributes hidden)
+    }
+
+  # module.container_image.terraform_data.ecr_image must be replaced
+-/+ resource "terraform_data" "ecr_image" {
+      ~ id               = "af39f4da-68f3-9414-43da-8b105ab51a22" -> (known after apply)
+      ~ output           = "504736193889.dkr.ecr.us-west-2.amazonaws.com/langgraph-cx-agent:latest" -> (known after apply)
+      ~ triggers_replace = [
+            "langgraph-cx-agent",
+          ~ "35ff079f29d5ce040d056bc6cdfc04b7a4c2fe4151e0ff91a36628aab429fc2edfde33969ea9bf4ced68df915b0268b8fbe89327ca97546210caa522afd8fb5e" -> "4dc5e2d2eebb1b01735837d1fa60165c6529d12b03af69551490077e676317c3bff99c3033bbe41a42c2fda551d2e0168b2b220388d00265d38855be4b3712ed",
+        ]
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.kb_stack.module.opensearch.opensearch_index.vector_index[0] must be replaced
+-/+ resource "opensearch_index" "vector_index" {
+      ~ id                             = "os-vector-index-agentic-ai-kb" -> (known after apply)
+      ~ mappings                       = jsonencode(
+          ~ {
+              ~ properties = {
+                  - id                                    = {
+                      - fields = {
+                          - keyword = {
+                              - ignore_above = 256
+                              - type         = "keyword"
+                            }
+                        }
+                      - type   = "text"
+                    }
+                  - x-amz-bedrock-kb-data-source-id       = {
+                      - fields = {
+                          - keyword = {
+                              - ignore_above = 256
+                              - type         = "keyword"
+                            }
+                        }
+                      - type   = "text"
+                    }
+                  - x-amz-bedrock-kb-source-file-modality = {
+                      - fields = {
+                          - keyword = {
+                              - ignore_above = 256
+                              - type         = "keyword"
+                            }
+                        }
+                      - type   = "text"
+                    }
+                  - x-amz-bedrock-kb-source-uri           = {
+                      - fields = {
+                          - keyword = {
+                              - ignore_above = 256
+                              - type         = "keyword"
+                            }
+                        }
+                      - type   = "text"
+                    }
+                    # (3 unchanged attributes hidden)
+                }
+            } # forces replacement
+        )
+        name                           = "os-vector-index-agentic-ai-kb"
+      ~ number_of_shards               = "2" -> "1"
+      + rollover_alias                 = (known after apply)
+        # (9 unchanged attributes hidden)
+    }
+
+Plan: 2 to add, 8 to change, 2 to destroy.
+module.container_image.terraform_data.ecr_image: Destroying... [id=af39f4da-68f3-9414-43da-8b105ab51a22]
+module.container_image.terraform_data.ecr_image: Destruction complete after 0s
+module.container_image.terraform_data.ecr_image: Creating...
+module.container_image.terraform_data.ecr_image: Provisioning with 'local-exec'...
+module.container_image.terraform_data.ecr_image (local-exec): Executing: ["/bin/sh" "-c" "aws ecr get-login-password | docker login --username AWS \\\n  --password-stdin 504736193889.dkr.ecr.us-west-2.amazonaws.com/langgraph-cx-agent &&\ndocker build --platform linux/arm64 \\\n  -t 504736193889.dkr.ecr.us-west-2.amazonaws.com/langgraph-cx-agent:latest \\\n  ./../cx-agent-backend &&\ndocker push 504736193889.dkr.ecr.us-west-2.amazonaws.com/langgraph-cx-agent:latest\n"]
+module.kb_stack.module.opensearch.opensearch_index.vector_index[0]: Destroying... [id=os-vector-index-agentic-ai-kb]
+module.kb_stack.module.opensearch.opensearch_index.vector_index[0]: Destruction complete after 1s
+module.kb_stack.module.opensearch.opensearch_index.vector_index[0]: Creating...
+module.kb_stack.module.opensearch.opensearch_index.vector_index[0]: Creation complete after 0s [id=os-vector-index-agentic-ai-kb]
+module.bedrock_role.data.aws_region.current: Reading...
+module.bedrock_role.data.aws_caller_identity.current: Reading...
+module.bedrock_role.data.aws_region.current: Read complete after 0s [id=us-west-2]
+module.bedrock_role.data.aws_caller_identity.current: Read complete after 0s [id=504736193889]
+
+module.container_image.terraform_data.ecr_image (local-exec): WARNING! Your credentials are stored unencrypted in '/home/ubuntu/.docker/config.json'.
+module.container_image.terraform_data.ecr_image (local-exec): Configure a credential helper to remove this warning. See
+module.container_image.terraform_data.ecr_image (local-exec): https://docs.docker.com/go/credential-store/
+
+module.container_image.terraform_data.ecr_image (local-exec): Login Succeeded
+module.container_image.terraform_data.ecr_image (local-exec): #0 building with "default" instance using docker driver
+
+module.container_image.terraform_data.ecr_image (local-exec): #1 [internal] load build definition from Dockerfile
+module.container_image.terraform_data.ecr_image (local-exec): #1 transferring dockerfile: 1.02kB done
+module.container_image.terraform_data.ecr_image (local-exec): #1 WARN: FromPlatformFlagConstDisallowed: FROM --platform flag should not use constant value "linux/arm64" (line 1)
+module.container_image.terraform_data.ecr_image (local-exec): #1 DONE 0.0s
+
+module.container_image.terraform_data.ecr_image (local-exec): #2 [internal] load metadata for public.ecr.aws/docker/library/python:3.11-slim-trixie
+module.container_image.terraform_data.ecr_image (local-exec): #2 DONE 0.2s
+
+module.container_image.terraform_data.ecr_image (local-exec): #3 [internal] load metadata for ghcr.io/astral-sh/uv:latest
+module.container_image.terraform_data.ecr_image (local-exec): #3 DONE 0.4s
+
+module.container_image.terraform_data.ecr_image (local-exec): #4 [internal] load .dockerignore
+module.container_image.terraform_data.ecr_image (local-exec): #4 transferring context: 2B done
+module.container_image.terraform_data.ecr_image (local-exec): #4 DONE 0.0s
+
+module.container_image.terraform_data.ecr_image (local-exec): #5 [stage-0 1/9] FROM public.ecr.aws/docker/library/python:3.11-slim-trixie@sha256:da047cb8f9d1d98e5c070f5300ba9f7274e33b8fc0e5be5ed88740aed1b95ba9
+module.container_image.terraform_data.ecr_image (local-exec): #5 resolve public.ecr.aws/docker/library/python:3.11-slim-trixie@sha256:da047cb8f9d1d98e5c070f5300ba9f7274e33b8fc0e5be5ed88740aed1b95ba9 0.0s done
+module.container_image.terraform_data.ecr_image (local-exec): #5 DONE 0.0s
+
+module.container_image.terraform_data.ecr_image (local-exec): #6 FROM ghcr.io/astral-sh/uv:latest@sha256:3adc3706091ce7c2fe595e669628caedd6d951551b92b258b7e7dbe06d9440bc
+module.container_image.terraform_data.ecr_image (local-exec): #6 resolve ghcr.io/astral-sh/uv:latest@sha256:3adc3706091ce7c2fe595e669628caedd6d951551b92b258b7e7dbe06d9440bc 0.0s done
+module.container_image.terraform_data.ecr_image (local-exec): #6 DONE 0.0s
+
+module.container_image.terraform_data.ecr_image (local-exec): #7 [internal] load build context
+module.container_image.terraform_data.ecr_image (local-exec): #7 transferring context: 22.53kB done
+module.container_image.terraform_data.ecr_image (local-exec): #7 DONE 0.0s
+
+module.container_image.terraform_data.ecr_image (local-exec): #8 [stage-0 3/9] WORKDIR /app
+module.container_image.terraform_data.ecr_image (local-exec): #8 CACHED
+
+module.container_image.terraform_data.ecr_image (local-exec): #9 [stage-0 2/9] COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+module.container_image.terraform_data.ecr_image (local-exec): #9 CACHED
+
+module.container_image.terraform_data.ecr_image (local-exec): #10 [stage-0 4/9] COPY pyproject.toml uv.lock ./
+module.container_image.terraform_data.ecr_image (local-exec): #10 CACHED
+
+module.container_image.terraform_data.ecr_image (local-exec): #11 [stage-0 5/9] RUN uv sync --no-dev --no-install-local
+module.container_image.terraform_data.ecr_image (local-exec): #11 CACHED
+
+module.container_image.terraform_data.ecr_image (local-exec): #12 [stage-0 6/9] COPY cx_agent_backend ./cx_agent_backend
+module.container_image.terraform_data.ecr_image (local-exec): #12 DONE 0.1s
+
+module.container_image.terraform_data.ecr_image (local-exec): #13 [stage-0 7/9] RUN uv sync --no-dev
+module.container_image.terraform_data.ecr_image (local-exec): #13 0.432 Resolved 158 packages in 27ms
+module.container_image.terraform_data.ecr_image (local-exec): #13 0.582    Building cx-agent-backend @ file:///app
+module.container_image.terraform_data.ecr_image (local-exec): #13 1.689       Built cx-agent-backend @ file:///app
+module.container_image.terraform_data.ecr_image (local-exec): #13 1.691 Prepared 1 package in 1.11s
+module.container_image.terraform_data.ecr_image (local-exec): #13 1.692 Installed 1 package in 1ms
+module.container_image.terraform_data.ecr_image (local-exec): #13 5.486 Bytecode compiled 6961 files in 3.79s
+module.container_image.terraform_data.ecr_image (local-exec): #13 5.486  + cx-agent-backend==0.1.0 (from file://
+module.container_image.terraform_data.ecr_image (local-exec): /app)
+module.container_image.terraform_data.ecr_image (local-exec): #13 DONE 5.6s
+
+module.container_image.terraform_data.ecr_image (local-exec): #14 [stage-0 8/9] RUN groupadd -r appuser && useradd -r -g appuser appuser
+module.container_image.terraform_data.ecr_image (local-exec): #14 DONE 0.3s
+
+module.container_image.terraform_data.ecr_image (local-exec): #15 [stage-0 9/9] RUN chown -R appuser:appuser /app
+module.container_image.terraform_data.ecr_image (local-exec): #15 DONE 0.3s
+
+module.container_image.terraform_data.ecr_image (local-exec): #16 exporting to image
+module.container_image.terraform_data.ecr_image (local-exec): #16 exporting layers
+module.container_image.terraform_data.ecr_image (local-exec): #16 exporting layers 0.4s done
+module.container_image.terraform_data.ecr_image (local-exec): #16 exporting manifest sha256:81c21f8827f378c5a2de17a9b23c3963fd625637c38057c352a47827f1d32f00 0.0s done
+module.container_image.terraform_data.ecr_image (local-exec): #16 exporting config sha256:86c82cfc5e5d281a8020ad03688accda8854e40fa2f31fe025ad272b46d4c185 0.0s done
+module.container_image.terraform_data.ecr_image (local-exec): #16 exporting attestation manifest sha256:aeb3484fd791b72f49f48786e781726ffef83bc0161aa7bc7068740e97402427 0.0s done
+module.container_image.terraform_data.ecr_image (local-exec): #16 exporting manifest list sha256:5eb45434bb475ca7a08dc17d7fd4ee51903c5d4b2c6cc51843cfc9a32faf110e 0.0s done
+module.container_image.terraform_data.ecr_image (local-exec): #16 naming to 504736193889.dkr.ecr.us-west-2.amazonaws.com/langgraph-cx-agent:latest done
+module.container_image.terraform_data.ecr_image (local-exec): #16 unpacking to 504736193889.dkr.ecr.us-west-2.amazonaws.com/langgraph-cx-agent:latest
+module.container_image.terraform_data.ecr_image (local-exec): #16 unpacking to 504736193889.dkr.ecr.us-west-2.amazonaws.com/langgraph-cx-agent:latest 0.2s done
+module.container_image.terraform_data.ecr_image: Still creating... [00m10s elapsed]
+module.container_image.terraform_data.ecr_image (local-exec): #16 DONE 0.7s
+
+module.container_image.terraform_data.ecr_image (local-exec):  [33m1 warning found (use docker --debug to expand):
+module.container_image.terraform_data.ecr_image (local-exec): [0m - FromPlatformFlagConstDisallowed: FROM --platform flag should not use constant value "linux/arm64" (line 1)
+module.container_image.terraform_data.ecr_image (local-exec): The push refers to repository [504736193889.dkr.ecr.us-west-2.amazonaws.com/langgraph-cx-agent]
+module.container_image.terraform_data.ecr_image (local-exec): 5f356fe11659: Layer already exists
+module.container_image.terraform_data.ecr_image (local-exec): 2d0e8c4fe481: Layer already exists
+module.container_image.terraform_data.ecr_image (local-exec): 4d9bf976d7e9: Waiting
+module.container_image.terraform_data.ecr_image (local-exec): 88a708072759: Layer already exists
+module.container_image.terraform_data.ecr_image (local-exec): 8be464268ce9: Layer already exists
+module.container_image.terraform_data.ecr_image (local-exec): 200da98f9c8b: Waiting
+module.container_image.terraform_data.ecr_image (local-exec): 58ce5adf8c9b: Waiting
+module.container_image.terraform_data.ecr_image (local-exec): a1c96b62eed5: Waiting
+module.container_image.terraform_data.ecr_image (local-exec): 44136fa355b3: Already exists
+module.container_image.terraform_data.ecr_image (local-exec): 03f370686e3a: Layer already exists
+module.container_image.terraform_data.ecr_image (local-exec): bd36565c0fde: Layer already exists
+module.container_image.terraform_data.ecr_image (local-exec): a16ecc1c5e5e: Layer already exists
+module.container_image.terraform_data.ecr_image (local-exec): 4d9bf976d7e9: Waiting
+module.container_image.terraform_data.ecr_image (local-exec): 1c623e0ff846: Waiting
+module.container_image.terraform_data.ecr_image (local-exec): 200da98f9c8b: Layer already exists
+module.container_image.terraform_data.ecr_image (local-exec): a1c96b62eed5: Pushed
+module.container_image.terraform_data.ecr_image (local-exec): 07280531ad25: Waiting
+module.container_image.terraform_data.ecr_image (local-exec): 58ce5adf8c9b: Pushed
+module.container_image.terraform_data.ecr_image (local-exec): 4d9bf976d7e9: Pushed
+module.container_image.terraform_data.ecr_image (local-exec): 1c623e0ff846: Pushed
+module.container_image.terraform_data.ecr_image (local-exec): 07280531ad25: Pushed
+module.container_image.terraform_data.ecr_image (local-exec): latest: digest: sha256:5eb45434bb475ca7a08dc17d7fd4ee51903c5d4b2c6cc51843cfc9a32faf110e size: 856
+module.container_image.terraform_data.ecr_image: Creation complete after 12s [id=62ae8c06-4f57-b3dd-4b4d-4d7903a80c03]
+
+Warning: Value for undeclared variable
+
+The root module does not declare a variable named "kb_bucket_name" but a
+value was found in file "terraform.tfvars". If you meant to use this value,
+add a "variable" block to the configuration.
+
+To silence these warnings, use TF_VAR_... environment variables to provide
+certain "global" settings to all configurations in your organization. To
+reduce the verbosity of these warnings, use the -compact-warnings option.
+
+Warning: Deprecated value used
+
+  with aws_iam_role_policy.gateway_policy,
+  on main.tf line 282, in resource "aws_iam_role_policy" "gateway_policy":
+ 282:   policy = jsonencode({
+ 283:     Version = "2012-10-17"
+ 284:     Statement = [
+ 285:       {
+ 286:         Effect = "Allow"
+ 287:         Action = [
+ 288:           "logs:CreateLogGroup",
+ 289:           "logs:CreateLogStream",
+ 290:           "logs:PutLogEvents"
+ 291:         ]
+ 292:         Resource = "arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:/aws/bedrock-agentcore/*"
+ 293:       },
+ 294:       {
+ 295:         Effect = "Allow"
+ 296:         Action = ["lambda:InvokeFunction"]
+ 297:         Resource = [
+ 298:           aws_lambda_function.gateway_interceptor.arn,
+ 299:         ]
+ 300:       }
+ 301:     ]
+ 302:   })
+
+  The deprecation originates from data.aws_region.current.name
+
+Deprecated resource attribute "name" used. Refer to the provider
+documentation for details.
+
+(and 34 more similar warnings elsewhere)
+
+Apply complete! Resources: 2 added, 0 changed, 2 destroyed.
+
+Outputs:
+
+agent_runtime_arn = "arn:aws:bedrock-agentcore:us-west-2:504736193889:runtime/langgraph_cx_agent-EX60Xr3XSv"
+bedrock_role_arn = "arn:aws:iam::504736193889:role/agentic-ai-bedrock-role"
+client_id = "58cbfkr9qaleptejutb6gn5lof"
+client_secret = <sensitive>
+data_source_id = "NSRZKRQIJ0"
+gateway_id = "cx-agent-gateway-op06voht5h"
+gateway_url = "https://cx-agent-gateway-op06voht5h.gateway.bedrock-agentcore.us-west-2.amazonaws.com/mcp"
+guardrail_id = "uys8g2wq9tiv"
+knowledge_base_id = "3IIQRVNCQB"
+oauth_token_url = "https://agentic-ai-user-pool-3npaw9a1.auth.us-west-2.amazoncognito.com/oauth2/token"
+s3_bucket_name = "agentic-ai-kb20260924034442869300000002"
+user_pool_client_id = "58cbfkr9qaleptejutb6gn5lof"
+user_pool_id = "us-west-2_EnNhLHFPx"
