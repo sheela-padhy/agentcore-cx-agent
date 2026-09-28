@@ -1,7 +1,7 @@
 
 # Agentic AI Foundation - Generative AI Customer Experience Platform
 
-The CX Agent is an intelligent customer experience platform built on **LangGraph** and designed for deployment on **AWS Bedrock AgentCore Runtime**. This agentic AI solution leverages multiple generative AI foundations including direct Bedrock model access, observability and guardrails to deliver sophisticated customer service capabilities through a conversational interface.
+The CX Agent is a customer service AI chatbot built with LangGraph and deployed on AWS Bedrock AgentCore Runtime. It calls Amazon Bedrock directly to generate responses, with built-in observability and safety guardrails.
 
 > **Note:** This is a fork of AWS's original blueprint, adapted to remove the GenAI Gateway dependency (saving ~$380/month) in favor of calling Amazon Bedrock directly. See the architecture diagram and "Direct Bedrock Model Access" section below for what actually changed.
 
