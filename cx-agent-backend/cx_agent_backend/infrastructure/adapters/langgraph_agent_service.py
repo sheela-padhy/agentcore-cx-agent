@@ -6,6 +6,45 @@ import os
 
 from opentelemetry import trace, baggage, context as otel_context
 from opentelemetry.sdk.trace import SpanProcessor, TracerProvider as _SDKTracerProvider
+from langchain_core.messages import AIMessage, HumanMessage
+from langchain_core.runnables import RunnableConfig
+from langchain_core.tools import tool
+from langgraph.prebuilt import create_react_agent
+from langchain_aws import ChatBedrockConverse
+from bedrock_agentcore.memory import MemoryClient
+
+from cx_agent_backend.domain.entities.conversation import Message, MessageRole
+from cx_agent_backend.domain.services.agent_service import (
+    AgentRequest,
+    AgentResponse,
+    AgentService,
+    AgentType,
+)
+from cx_agent_backend.domain.services.guardrail_service import (
+    GuardrailAssessment,
+    GuardrailService,
+)
+from cx_agent_backend.domain.services.llm_service import LLMService
+from cx_agent_backend.infrastructure.adapters.tools import tools
+from cx_agent_backend.infrastructure.aws.parameter_store_reader import (
+    AWSParameterStoreReader,
+)
+from cx_agent_backend.infrastructure.aws.secret_reader import AWSSecretsReader
+
+try:
+    from mcp import ClientSession
+    from mcp.client.streamable_http import streamablehttp_client
+    import requests
+
+    GATEWAY_AVAILABLE = True
+except ImportError:
+    GATEWAY_AVAILABLE = False
+
+logger = logging.getLogger(__name__)
+
+
+parameter_store_reader = AWSParameterStoreReader()
+secret_reader = AWSSecretsReader()
 
 
 class _LangfuseBaggageSpanProcessor(SpanProcessor):
@@ -69,46 +108,6 @@ def _ensure_baggage_span_processor():
             "baggage will not be attached to this request's trace",
             type(provider).__name__,
         )
-
-from langchain_core.messages import AIMessage, HumanMessage
-from langchain_core.runnables import RunnableConfig
-from langchain_core.tools import tool
-from langgraph.prebuilt import create_react_agent
-from langchain_aws import ChatBedrockConverse
-from bedrock_agentcore.memory import MemoryClient
-
-from cx_agent_backend.domain.entities.conversation import Message, MessageRole
-from cx_agent_backend.domain.services.agent_service import (
-    AgentRequest,
-    AgentResponse,
-    AgentService,
-    AgentType,
-)
-from cx_agent_backend.domain.services.guardrail_service import (
-    GuardrailAssessment,
-    GuardrailService,
-)
-from cx_agent_backend.domain.services.llm_service import LLMService
-from cx_agent_backend.infrastructure.adapters.tools import tools
-from cx_agent_backend.infrastructure.aws.parameter_store_reader import (
-    AWSParameterStoreReader,
-)
-from cx_agent_backend.infrastructure.aws.secret_reader import AWSSecretsReader
-
-try:
-    from mcp import ClientSession
-    from mcp.client.streamable_http import streamablehttp_client
-    import requests
-
-    GATEWAY_AVAILABLE = True
-except ImportError:
-    GATEWAY_AVAILABLE = False
-
-logger = logging.getLogger(__name__)
-
-
-parameter_store_reader = AWSParameterStoreReader()
-secret_reader = AWSSecretsReader()
 
 
 class LangGraphAgentService(AgentService):
