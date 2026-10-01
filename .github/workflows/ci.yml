@@ -5,6 +5,35 @@ on:
     branches: [ main ]
 
 jobs:
+  notify-pr-opened:
+    # Only fires when the PR is first created, not on every follow-up push
+    # to it (that would spam Slack with one message per commit).
+    if: github.event.action == 'opened'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post to Slack
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          python3 << 'EOF'
+          import json, os, urllib.request
+
+          text = (
+              "\U0001F514 New Pull Request opened: *" + os.environ["PR_TITLE"] + "*\n"
+              "By " + os.environ["PR_AUTHOR"] + " -> " + os.environ["PR_URL"]
+          )
+          data = json.dumps({"text": text}).encode()
+          req = urllib.request.Request(
+              os.environ["SLACK_WEBHOOK_URL"],
+              data=data,
+              headers={"Content-Type": "application/json"},
+          )
+          urllib.request.urlopen(req)
+          EOF
+
   backend-ci:
     runs-on: ubuntu-latest
     defaults:
