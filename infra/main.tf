@@ -9,6 +9,7 @@ module "container_image" {
   force_image_rebuild = var.force_image_rebuild
   image_build_tool    = var.container_image_build_tool
   repository_name     = "langgraph-cx-agent"
+  image_tag           = "v1"
 }
 
 # Agent Memory
@@ -228,11 +229,11 @@ resource "aws_lambda_function" "gateway_interceptor" {
 
   environment {
     variables = {
-      RATE_LIMIT_TABLE        = aws_dynamodb_table.rate_limit_table.name
-      RATE_LIMIT_MAX          = tostring(var.interceptor_rate_limit_max)
-      RATE_LIMIT_WINDOW       = tostring(var.interceptor_rate_limit_window)
-      ENABLE_RATE_LIMIT       = tostring(var.interceptor_enable_rate_limit)
-      ENABLE_GUARDRAIL_CHECKS = tostring(var.interceptor_enable_guardrail_checks)
+      RATE_LIMIT_TABLE             = aws_dynamodb_table.rate_limit_table.name
+      RATE_LIMIT_MAX               = tostring(var.interceptor_rate_limit_max)
+      RATE_LIMIT_WINDOW            = tostring(var.interceptor_rate_limit_window)
+      ENABLE_RATE_LIMIT            = tostring(var.interceptor_enable_rate_limit)
+      ENABLE_GUARDRAIL_CHECKS      = tostring(var.interceptor_enable_guardrail_checks)
       GUARDRAIL_BLOCK_THRESHOLD    = tostring(var.interceptor_guardrail_block_threshold)
       GUARDRAIL_ESCALATE_THRESHOLD = tostring(var.interceptor_guardrail_escalate_threshold)
     }
@@ -243,9 +244,9 @@ resource "aws_lambda_function" "gateway_interceptor" {
 
 # Dead letter queue for interceptor Lambda
 resource "aws_sqs_queue" "interceptor_dlq" {
-  name                    = "cx-gateway-interceptor-dlq"
+  name                      = "cx-gateway-interceptor-dlq"
   message_retention_seconds = 1209600 # 14 days
-  sqs_managed_sse_enabled = true
+  sqs_managed_sse_enabled   = true
 }
 
 # Allow AgentCore Gateway to invoke the interceptor Lambda
@@ -372,14 +373,27 @@ resource "aws_bedrockagentcore_agent_runtime" "agent_runtime" {
     server_protocol = "HTTP"
   }
   environment_variables = {
-    "DEFAULT_MODEL" = "global.anthropic.claude-haiku-4-5-20251001-v1:0"
-    "AWS_REGION" = data.aws_region.current.name
-    "LOG_LEVEL" = "INFO"
+    "DEFAULT_MODEL"               = "global.anthropic.claude-haiku-4-5-20251001-v1:0"
+    "AWS_REGION"                  = data.aws_region.current.name
+    "LOG_LEVEL"                   = "INFO"
     "OTEL_EXPORTER_OTLP_ENDPOINT" = "${var.langfuse_host}/api/public/otel"
-    "OTEL_EXPORTER_OTLP_HEADERS" = "Authorization=Basic ${base64encode("${var.langfuse_public_key}:${var.langfuse_secret_key}")}"
-    "LANGSMITH_OTEL_ENABLED" = "true"
-    "LANGSMITH_TRACING" = "true"
-    "DISABLE_ADOT_OBSERVABILITY" = "true"
+    "OTEL_EXPORTER_OTLP_HEADERS"  = "Authorization=Basic ${base64encode("${var.langfuse_public_key}:${var.langfuse_secret_key}")}"
+    "LANGSMITH_OTEL_ENABLED"      = "true"
+    "LANGSMITH_TRACING"           = "true"
+    "DISABLE_ADOT_OBSERVABILITY"  = "true"
   }
 
+}
+
+# GitHub Actions CI/CD: lets the agentcore-cx-agent repo's CD workflow
+# authenticate to AWS via OIDC (no stored access keys) to push images and
+# redeploy the Agent Runtime after a merge to main.
+module "github_oidc" {
+  source = "./modules/github-oidc"
+
+  github_repo              = "sheela-padhy/agentcore-cx-agent"
+  github_repo_sub          = "repo:sheela-padhy@139641763/agentcore-cx-agent@1391374801:ref:refs/heads/main"
+  ecr_repository_arn       = module.container_image.ecr_repository_arn
+  agent_runtime_arn        = aws_bedrockagentcore_agent_runtime.agent_runtime.agent_runtime_arn
+  agent_execution_role_arn = module.bedrock_role.role_arn
 }

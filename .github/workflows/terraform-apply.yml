@@ -1,0 +1,67 @@
+name: Terraform Apply
+
+# Deliberately manual-only - no automatic trigger. Infrastructure changes
+# are higher-stakes than application code (can cost money, delete real
+# resources), so unlike the app's CD pipeline, this never runs on its own.
+# Go to Actions tab -> Terraform Apply -> Run workflow, after reviewing
+# the plan from a merged PR.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infra
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Assume AWS role via OIDC (no stored credentials)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::504736193889:role/github-actions-cx-agent-terraform
+          aws-region: us-west-2
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform init
+        run: terraform init -input=false
+
+      - name: Terraform apply
+        run: terraform apply -auto-approve -input=false -no-color
+
+      - name: Notify Slack of apply result
+        if: always()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          JOB_STATUS: ${{ job.status }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          python3 << 'EOF'
+          import json, os, urllib.request
+
+          status = os.environ["JOB_STATUS"]
+          emoji = "✅" if status == "success" else "❌"
+          word = "succeeded" if status == "success" else "FAILED"
+
+          text = (
+              emoji + " Terraform apply " + word + " (manual trigger)\n"
+              + os.environ["RUN_URL"]
+          )
+          data = json.dumps({"text": text}).encode()
+          req = urllib.request.Request(
+              os.environ["SLACK_WEBHOOK_URL"],
+              data=data,
+              headers={"Content-Type": "application/json"},
+          )
+          urllib.request.urlopen(req)
+          EOF
