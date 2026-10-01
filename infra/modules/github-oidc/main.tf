@@ -89,6 +89,14 @@ resource "aws_iam_role_policy" "github_actions_cd" {
 resource "aws_iam_role" "github_actions_terraform" {
   name = "github-actions-cx-agent-terraform"
 
+  # This role is used by TWO different workflows with different trigger
+  # types, and GitHub's OIDC "sub" claim format differs by trigger:
+  #   - terraform-apply.yml (workflow_dispatch, runs against main):
+  #     repo:OWNER@ID/REPO@ID:ref:refs/heads/main
+  #   - terraform-plan.yml (pull_request, can be opened from any branch):
+  #     repo:OWNER@ID/REPO@ID:pull_request  (no branch/ref info at all)
+  # StringEquals accepts a list here - matches if the actual value equals
+  # ANY entry in the list, not "all of them".
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -101,7 +109,10 @@ resource "aws_iam_role" "github_actions_terraform" {
         Condition = {
           StringEquals = {
             "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
-            "token.actions.githubusercontent.com:sub" = var.github_repo_sub
+            "token.actions.githubusercontent.com:sub" = [
+              var.github_repo_sub,
+              var.github_repo_sub_pull_request,
+            ]
           }
         }
       }

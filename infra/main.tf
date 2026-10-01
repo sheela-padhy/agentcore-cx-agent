@@ -391,9 +391,10 @@ resource "aws_bedrockagentcore_agent_runtime" "agent_runtime" {
 module "github_oidc" {
   source = "./modules/github-oidc"
 
-  github_repo              = "sheela-padhy/agentcore-cx-agent"
-  github_repo_sub          = "repo:sheela-padhy@139641763/agentcore-cx-agent@1391374801:ref:refs/heads/main"
-  ecr_repository_arn       = module.container_image.ecr_repository_arn
-  agent_runtime_arn        = aws_bedrockagentcore_agent_runtime.agent_runtime.agent_runtime_arn
-  agent_execution_role_arn = module.bedrock_role.role_arn
+  github_repo                  = "sheela-padhy/agentcore-cx-agent"
+  github_repo_sub              = "repo:sheela-padhy@139641763/agentcore-cx-agent@1391374801:ref:refs/heads/main"
+  github_repo_sub_pull_request = "repo:sheela-padhy@139641763/agentcore-cx-agent@1391374801:pull_request"
+  ecr_repository_arn           = module.container_image.ecr_repository_arn
+  agent_runtime_arn            = aws_bedrockagentcore_agent_runtime.agent_runtime.agent_runtime_arn
+  agent_execution_role_arn     = module.bedrock_role.role_arn
 }

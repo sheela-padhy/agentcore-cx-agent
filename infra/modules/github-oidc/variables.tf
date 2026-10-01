@@ -28,3 +28,8 @@ variable "agent_execution_role_arn" {
   description = "ARN of the role the Agent Runtime itself runs as (needed for iam:PassRole during redeploy)"
   type        = string
 }
+
+variable "github_repo_sub_pull_request" {
+  description = "The exact sub claim for a pull_request-triggered workflow on this repo (format: repo:OWNER@ID/REPO@ID:pull_request - no branch/ref info, unlike a push-triggered sub)"
+  type        = string
+}
