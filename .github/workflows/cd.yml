@@ -103,3 +103,34 @@ jobs:
           else:
               raise SystemExit("Timed out waiting for Runtime to become READY")
           EOF
+
+      - name: Notify Slack of deployment result
+        if: always()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          JOB_STATUS: ${{ job.status }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          COMMIT_SHA: ${{ github.sha }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          python3 << 'EOF'
+          import json, os, urllib.request
+
+          status = os.environ["JOB_STATUS"]
+          emoji = "\u2705" if status == "success" else "\u274C"
+          word = "succeeded" if status == "success" else "FAILED"
+          short_sha = os.environ["COMMIT_SHA"][:7]
+
+          text = (
+              emoji + " Deployment " + word + ": `" + short_sha + "` "
+              + os.environ.get("COMMIT_MSG", "").splitlines()[0] + "\n"
+              + os.environ["RUN_URL"]
+          )
+          data = json.dumps({"text": text}).encode()
+          req = urllib.request.Request(
+              os.environ["SLACK_WEBHOOK_URL"],
+              data=data,
+              headers={"Content-Type": "application/json"},
+          )
+          urllib.request.urlopen(req)
+          EOF
