@@ -169,6 +169,12 @@ resource "aws_iam_role_policy" "terraform_extra_permissions" {
         Action   = ["kms:*"]
         Resource = "*"
       },
+      {
+        Sid      = "CloudControlForAWSCC"
+        Effect   = "Allow"
+        Action   = ["cloudformation:*"]
+        Resource = "*"
+      },
     ]
   })
 }
