@@ -13,6 +13,7 @@ env:
   ECR_REPOSITORY: langgraph-cx-agent
   AGENT_RUNTIME_ID: langgraph_cx_agent-6oVCIK724N
   AGENT_EXECUTION_ROLE_ARN: arn:aws:iam::504736193889:role/agentic-ai-bedrock-role
+  DEFAULT_MODEL: global.anthropic.claude-sonnet-5
 
 jobs:
   build-and-deploy:
@@ -78,6 +79,11 @@ jobs:
 
           current = client.get_agent_runtime(agentRuntimeId=runtime_id)
           env_vars = current.get("environmentVariables", {})
+          # DEFAULT_MODEL is set explicitly here (from this workflow file),
+          # not just carried forward - this makes the model a real,
+          # version-controlled setting instead of untracked Runtime state.
+          env_vars["DEFAULT_MODEL"] = os.environ["DEFAULT_MODEL"]
+          print("Setting DEFAULT_MODEL to " + env_vars["DEFAULT_MODEL"])
 
           print(f"Deploying {image_uri} to {runtime_id} ...")
           client.update_agent_runtime(
