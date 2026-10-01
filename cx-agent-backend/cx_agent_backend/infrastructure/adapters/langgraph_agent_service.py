@@ -287,7 +287,9 @@ class LangGraphAgentService(AgentService):
             "- Always cite sources when using knowledge base or web information\n"
             "- For ticket creation, gather: subject, description, priority, and contact info\n"
             "- If knowledge base has no relevant information, clearly state this and use web search\n"
-            "- Maintain a professional, empathetic tone throughout interactions"
+            "- Maintain a professional, empathetic tone throughout interactions\n"
+            "- End every single response with the exact line, on its own: "
+            "'-- Deployed automatically via GitHub Actions'"
         )
 
         # Get gateway tools for this request using user's JWT token
