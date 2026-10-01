@@ -1,0 +1,90 @@
+name: CD
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  id-token: write   # required for OIDC - lets this workflow request a temporary AWS identity
+  contents: read
+
+env:
+  AWS_REGION: us-west-2
+  ECR_REPOSITORY: langgraph-cx-agent
+  AGENT_RUNTIME_ID: langgraph_cx_agent-6oVCIK724N
+  AGENT_EXECUTION_ROLE_ARN: arn:aws:iam::504736193889:role/agentic-ai-bedrock-role
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Assume AWS role via OIDC (no stored credentials)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::504736193889:role/github-actions-cx-agent-cd
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Log in to Amazon ECR
+        id: ecr-login
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Set image tag to the commit SHA
+        id: vars
+        run: echo "image_tag=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+
+      - name: Build Docker image
+        working-directory: cx-agent-backend
+        run: |
+          docker build --platform linux/arm64 \
+            -t ${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.vars.outputs.image_tag }} \
+            .
+
+      - name: Push image to ECR
+        run: |
+          docker push ${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.vars.outputs.image_tag }}
+
+      - name: Install boto3
+        run: pip install boto3
+
+      - name: Redeploy the Agent Runtime with the new image
+        run: |
+          python3 << 'EOF'
+          import boto3, time, os
+
+          region = os.environ["AWS_REGION"]
+          runtime_id = os.environ["AGENT_RUNTIME_ID"]
+          image_uri = "${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.vars.outputs.image_tag }}"
+          execution_role_arn = os.environ["AGENT_EXECUTION_ROLE_ARN"]
+
+          client = boto3.client("bedrock-agentcore-control", region_name=region)
+
+          current = client.get_agent_runtime(agentRuntimeId=runtime_id)
+          env_vars = current.get("environmentVariables", {})
+
+          print(f"Deploying {image_uri} to {runtime_id} ...")
+          client.update_agent_runtime(
+              agentRuntimeId=runtime_id,
+              roleArn=execution_role_arn,
+              agentRuntimeArtifact={
+                  "containerConfiguration": {"containerUri": image_uri}
+              },
+              networkConfiguration={"networkMode": "PUBLIC"},
+              protocolConfiguration={"serverProtocol": "HTTP"},
+              environmentVariables=env_vars,
+          )
+
+          for _ in range(30):
+              status = client.get_agent_runtime(agentRuntimeId=runtime_id)["status"]
+              print(f"  status: {status}")
+              if status == "READY":
+                  print("Deployment successful.")
+                  break
+              if status in ("CREATE_FAILED", "UPDATE_FAILED"):
+                  raise SystemExit(f"Deployment failed with status {status}")
+              time.sleep(10)
+          else:
+              raise SystemExit("Timed out waiting for Runtime to become READY")
+          EOF
