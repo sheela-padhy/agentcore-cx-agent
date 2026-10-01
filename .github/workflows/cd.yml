@@ -13,7 +13,7 @@ env:
   ECR_REPOSITORY: langgraph-cx-agent
   AGENT_RUNTIME_ID: langgraph_cx_agent-6oVCIK724N
   AGENT_EXECUTION_ROLE_ARN: arn:aws:iam::504736193889:role/agentic-ai-bedrock-role
-  DEFAULT_MODEL: global.anthropic.claude-sonnet-5
+  DEFAULT_MODEL: global.anthropic.claude-sonnet-4-6
 
 jobs:
   build-and-deploy:
