@@ -17,6 +17,17 @@ jobs:
     defaults:
       run:
         working-directory: infra
+    env:
+      TF_VAR_bedrock_role_name: ${{ secrets.TF_VAR_BEDROCK_ROLE_NAME }}
+      TF_VAR_user_pool_name: ${{ secrets.TF_VAR_USER_POOL_NAME }}
+      TF_VAR_kb_stack_name: ${{ secrets.TF_VAR_KB_STACK_NAME }}
+      TF_VAR_kb_bucket_name: ${{ secrets.TF_VAR_KB_BUCKET_NAME }}
+      TF_VAR_gateway_url: ${{ secrets.TF_VAR_GATEWAY_URL }}
+      TF_VAR_gateway_api_key: ${{ secrets.TF_VAR_GATEWAY_API_KEY }}
+      TF_VAR_tavily_api_key: ${{ secrets.TF_VAR_TAVILY_API_KEY }}
+      TF_VAR_langfuse_public_key: ${{ secrets.TF_VAR_LANGFUSE_PUBLIC_KEY }}
+      TF_VAR_langfuse_secret_key: ${{ secrets.TF_VAR_LANGFUSE_SECRET_KEY }}
+      TF_VAR_langfuse_host: ${{ secrets.TF_VAR_LANGFUSE_HOST }}
     steps:
       - name: Check out code
         uses: actions/checkout@v4
