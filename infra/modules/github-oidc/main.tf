@@ -137,6 +137,42 @@ resource "aws_iam_role_policy_attachment" "terraform_managed_policies" {
   policy_arn = each.value
 }
 
+# Three gaps found by actually running terraform plan (not guessed ahead
+# of time): the AWS-managed FullAccess policies attached above don't cover
+# these newer/specialized namespaces at all:
+#   - bedrock-agentcore:* (AgentCore is newer than AmazonBedrockFullAccess)
+#   - aoss:* (OpenSearch *Serverless* is a separate namespace from classic
+#     OpenSearch, not covered by AmazonOpenSearchServiceFullAccess)
+#   - kms:* (missed entirely - needed for the Secrets Manager encryption key)
+resource "aws_iam_role_policy" "terraform_extra_permissions" {
+  name = "github-actions-cx-agent-terraform-extra"
+  role = aws_iam_role.github_actions_terraform.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid      = "BedrockAgentCore"
+        Effect   = "Allow"
+        Action   = ["bedrock-agentcore:*"]
+        Resource = "*"
+      },
+      {
+        Sid      = "OpenSearchServerless"
+        Effect   = "Allow"
+        Action   = ["aoss:*"]
+        Resource = "*"
+      },
+      {
+        Sid      = "KMS"
+        Effect   = "Allow"
+        Action   = ["kms:*"]
+        Resource = "*"
+      },
+    ]
+  })
+}
+
 # Terraform's own state needs read/write access to the S3 state bucket +
 # DynamoDB lock table - not covered by the FullAccess policies above in a
 # resource-scoped way, so grant them explicitly.
