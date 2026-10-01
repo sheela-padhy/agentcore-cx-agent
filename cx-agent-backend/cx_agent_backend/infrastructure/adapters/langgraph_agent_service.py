@@ -237,9 +237,12 @@ class LangGraphAgentService(AgentService):
         user_jwt_token: str = None,
     ) -> any:
         """Create agent with specific model."""
-        # Use ChatBedrock directly
+        # Use the model actually requested (ultimately DEFAULT_MODEL from
+        # the environment) instead of a hardcoded value - this was
+        # previously hardcoded to Haiku regardless of what was configured,
+        # silently ignoring the model parameter entirely.
         llm = ChatBedrockConverse(
-            model="global.anthropic.claude-haiku-4-5-20251001-v1:0",
+            model=model,
             region_name=os.getenv("AWS_REGION", "us-west-2"),
             temperature=0.7,
         )
