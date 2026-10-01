@@ -35,10 +35,21 @@ jobs:
         id: vars
         run: echo "image_tag=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
 
+      # GitHub's standard runners are x86_64, but AgentCore Runtime (and this
+      # project's EC2 build box, a Graviton/ARM64 instance) needs an ARM64
+      # image - these two steps set up emulation so an ARM64 image can be
+      # built on an x86 machine (slower than native, but works reliably
+      # without needing a special ARM-hosted runner).
+      - name: Set up QEMU (for cross-platform ARM64 builds)
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Build Docker image
         working-directory: cx-agent-backend
         run: |
-          docker build --platform linux/arm64 \
+          docker buildx build --platform linux/arm64 --load \
             -t ${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.vars.outputs.image_tag }} \
             .
 
