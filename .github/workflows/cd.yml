@@ -58,7 +58,11 @@ jobs:
           docker push ${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.vars.outputs.image_tag }}
 
       - name: Install boto3
-        run: pip install boto3
+        # bedrock-agentcore-control is a very new AWS service; older
+        # botocore versions (what a bare "pip install boto3" can resolve to
+        # on a fresh runner) don't have its service model yet and raise
+        # UnknownServiceError. Force the latest to make sure it's included.
+        run: pip install --upgrade boto3 botocore
 
       - name: Redeploy the Agent Runtime with the new image
         run: |
