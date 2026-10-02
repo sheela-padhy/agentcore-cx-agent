@@ -3,6 +3,9 @@ name: CD
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'cx-agent-backend/**'
+      - '.github/workflows/cd.yml'
 
 permissions:
   id-token: write   # required for OIDC - lets this workflow request a temporary AWS identity
