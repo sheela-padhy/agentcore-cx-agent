@@ -383,6 +383,20 @@ resource "aws_bedrockagentcore_agent_runtime" "agent_runtime" {
     "DISABLE_ADOT_OBSERVABILITY"  = "true"
   }
 
+  # The CD pipeline (.github/workflows/cd.yml) now owns the deployed image
+  # and the model, updating both directly via the AWS API on every merge to
+  # main - bypassing Terraform entirely, on purpose (that is the whole point
+  # of the CD pipeline). Without this, every terraform apply would "helpfully"
+  # revert those fields back to whatever static values are written above,
+  # silently undoing CD's most recent deployment. The values above are now
+  # just the *initial* bootstrap values, not the source of truth once CD
+  # starts running.
+  lifecycle {
+    ignore_changes = [
+      environment_variables,
+      agent_runtime_artifact,
+    ]
+  }
 }
 
 # GitHub Actions CI/CD: lets the agentcore-cx-agent repo's CD workflow

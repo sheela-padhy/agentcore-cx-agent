@@ -18,7 +18,7 @@ output "data_source_id" {
   value       = module.knowledge_base.data_source_id
 }
 
-output "collection_arn" {
-  description = "ARN of the OpenSearch Serverless collection"
-  value       = module.opensearch.collection_arn
+output "vector_bucket_arn" {
+  description = "ARN of the S3 Vectors bucket"
+  value       = module.s3_vectors.vector_bucket_arn
 }

@@ -44,7 +44,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "access_logs_lifecycle" {
     status = "Enabled"
 
     filter {}
-    
+
     abort_incomplete_multipart_upload {
       days_after_initiation = 7
     }
@@ -94,11 +94,11 @@ resource "aws_s3_bucket_lifecycle_configuration" "kb_bucket_lifecycle" {
     status = "Enabled"
 
     filter {}
-    
+
     abort_incomplete_multipart_upload {
       days_after_initiation = 7
     }
-    
+
     transition {
       days          = 30
       storage_class = "STANDARD_IA"
@@ -114,7 +114,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "kb_bucket_lifecycle" {
 # IAM Role for Bedrock
 resource "aws_iam_role" "bedrock_role" {
   name = "${var.name}-bedrock-role"
-  
+
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -129,21 +129,20 @@ resource "aws_iam_role" "bedrock_role" {
   })
 }
 
-module "opensearch" {
-  source = "../opensearch-serverless"
-  
-  collection_name = "${var.name}"
-  additional_principals = [aws_iam_role.bedrock_role.arn]
+module "s3_vectors" {
+  source = "../s3-vectors"
+
+  name = var.name
 }
 
 module "knowledge_base" {
   source = "../knowledge-base"
-  
-  kb_name             = var.name
-  bedrock_role_name   = aws_iam_role.bedrock_role.name
-  bedrock_role_arn    = aws_iam_role.bedrock_role.arn
-  opensearch_arn      = module.opensearch.collection_arn
-  opensearch_index_name = "os-vector-index-${var.name}"
-  kb_model_arn        = var.kb_model_arn
-  s3_arn              = aws_s3_bucket.kb_bucket.arn
+
+  kb_name              = var.name
+  bedrock_role_name    = aws_iam_role.bedrock_role.name
+  bedrock_role_arn     = aws_iam_role.bedrock_role.arn
+  s3_vector_bucket_arn = module.s3_vectors.vector_bucket_arn
+  s3_vector_index_arn  = module.s3_vectors.index_arn
+  kb_model_arn         = var.kb_model_arn
+  s3_arn               = aws_s3_bucket.kb_bucket.arn
 }
