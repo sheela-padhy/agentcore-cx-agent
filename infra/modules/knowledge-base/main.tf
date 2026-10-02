@@ -55,6 +55,13 @@ resource "aws_bedrockagent_knowledge_base" "sample_kb" {
 resource "aws_bedrockagent_data_source" "sample_kb" {
   knowledge_base_id = aws_bedrockagent_knowledge_base.sample_kb.id
   name              = "${var.kb_name}DataSource"
+  # RETAIN (not the AWS default DELETE): deleting the KB should not also
+  # try to delete vector data from the underlying store first - that step
+  # can fail if the store is also being destroyed in the same apply
+  # (exactly what happened migrating from OpenSearch to S3 Vectors: the
+  # access policy got destroyed before the KB finished its own internal
+  # vector-store cleanup, leaving the KB stuck in DELETE_UNSUCCESSFUL).
+  data_deletion_policy = "RETAIN"
   data_source_configuration {
     type = "S3"
     s3_configuration {
