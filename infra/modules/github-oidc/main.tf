@@ -175,6 +175,12 @@ resource "aws_iam_role_policy" "terraform_extra_permissions" {
         Action   = ["cloudformation:*"]
         Resource = "*"
       },
+      {
+        Sid      = "SSMParameterStore"
+        Effect   = "Allow"
+        Action   = ["ssm:*"]
+        Resource = "*"
+      },
     ]
   })
 }
