@@ -181,6 +181,12 @@ resource "aws_iam_role_policy" "terraform_extra_permissions" {
         Action   = ["ssm:*"]
         Resource = "*"
       },
+      {
+        Sid      = "S3Vectors"
+        Effect   = "Allow"
+        Action   = ["s3vectors:*"]
+        Resource = "*"
+      },
     ]
   })
 }
