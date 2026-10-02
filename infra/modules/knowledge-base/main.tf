@@ -45,8 +45,10 @@ resource "aws_bedrockagent_knowledge_base" "sample_kb" {
   storage_configuration {
     type = "S3_VECTORS"
     s3_vectors_configuration {
-      vector_bucket_arn = var.s3_vector_bucket_arn
-      index_arn         = var.s3_vector_index_arn
+      # index_arn alone fully identifies the bucket too - AWS rejects
+      # specifying both vector_bucket_arn and index_arn together
+      # ("cannot be specified when index_arn is specified").
+      index_arn = var.s3_vector_index_arn
     }
   }
   depends_on = [time_sleep.iam_consistency_delay, aws_iam_role_policy.bedrock_kb_sample_kb_model]
