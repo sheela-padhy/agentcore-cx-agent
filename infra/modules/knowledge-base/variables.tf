@@ -13,13 +13,13 @@ variable "bedrock_role_arn" {
   type        = string
 }
 
-variable "opensearch_arn" {
-  description = "ARN of the OpenSearch Serverless collection"
+variable "s3_vector_bucket_arn" {
+  description = "ARN of the S3 Vectors bucket"
   type        = string
 }
 
-variable "opensearch_index_name" {
-  description = "Name of the OpenSearch index"
+variable "s3_vector_index_arn" {
+  description = "ARN of the S3 Vectors index"
   type        = string
 }
 
