@@ -63,3 +63,7 @@ output "user_pool_client_id" {
   description = "Cognito user pool client ID"
   value       = module.cognito.user_pool_client_id
 }
+
+output "github_actions_role_arn" {
+  value = module.github_oidc.github_actions_role_arn
+}

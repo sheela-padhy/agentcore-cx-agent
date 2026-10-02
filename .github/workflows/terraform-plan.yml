@@ -1,0 +1,75 @@
+name: Terraform Plan
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'infra/**'
+
+permissions:
+  id-token: write      # required for OIDC
+  contents: read
+  pull-requests: write # required to post the plan as a PR comment
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infra
+    env:
+      TF_VAR_bedrock_role_name: ${{ secrets.TF_VAR_BEDROCK_ROLE_NAME }}
+      TF_VAR_user_pool_name: ${{ secrets.TF_VAR_USER_POOL_NAME }}
+      TF_VAR_kb_stack_name: ${{ secrets.TF_VAR_KB_STACK_NAME }}
+      TF_VAR_kb_bucket_name: ${{ secrets.TF_VAR_KB_BUCKET_NAME }}
+      TF_VAR_gateway_url: ${{ secrets.TF_VAR_GATEWAY_URL }}
+      TF_VAR_gateway_api_key: ${{ secrets.TF_VAR_GATEWAY_API_KEY }}
+      TF_VAR_tavily_api_key: ${{ secrets.TF_VAR_TAVILY_API_KEY }}
+      TF_VAR_langfuse_public_key: ${{ secrets.TF_VAR_LANGFUSE_PUBLIC_KEY }}
+      TF_VAR_langfuse_secret_key: ${{ secrets.TF_VAR_LANGFUSE_SECRET_KEY }}
+      TF_VAR_langfuse_host: ${{ secrets.TF_VAR_LANGFUSE_HOST }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Assume AWS role via OIDC (no stored credentials)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::504736193889:role/github-actions-cx-agent-terraform
+          aws-region: us-west-2
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform init
+        run: terraform init -input=false
+
+      - name: Terraform plan
+        id: plan
+        run: |
+          terraform plan -no-color -input=false -out=tfplan 2>&1 | tee plan_output.txt
+          terraform show -no-color tfplan >> plan_output.txt
+        continue-on-error: true
+
+      - name: Post plan as PR comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let output = fs.readFileSync('infra/plan_output.txt', 'utf8');
+            // GitHub comments have a size limit - truncate very long plans
+            const maxLen = 60000;
+            if (output.length > maxLen) {
+              output = output.slice(0, maxLen) + '\n\n... (truncated, see full log in the Actions run)';
+            }
+            const body = `#### Terraform Plan\n\`\`\`\n${output}\n\`\`\``;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body,
+            });
+
+      - name: Fail job if plan failed
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
