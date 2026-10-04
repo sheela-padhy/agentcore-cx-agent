@@ -29,6 +29,14 @@ jobs:
       TF_VAR_langfuse_public_key: ${{ secrets.TF_VAR_LANGFUSE_PUBLIC_KEY }}
       TF_VAR_langfuse_secret_key: ${{ secrets.TF_VAR_LANGFUSE_SECRET_KEY }}
       TF_VAR_langfuse_host: ${{ secrets.TF_VAR_LANGFUSE_HOST }}
+      # zendesk_oauth_refresh_token here is only ever the frozen starting
+      # value from initial setup - ignore_changes in the secrets module
+      # stops this apply from overwriting the live-rotated token the
+      # backend maintains in AWS. See infra/modules/secrets/main.tf.
+      TF_VAR_zendesk_domain: ${{ secrets.TF_VAR_ZENDESK_DOMAIN }}
+      TF_VAR_zendesk_oauth_client_id: ${{ secrets.TF_VAR_ZENDESK_OAUTH_CLIENT_ID }}
+      TF_VAR_zendesk_oauth_client_secret: ${{ secrets.TF_VAR_ZENDESK_OAUTH_CLIENT_SECRET }}
+      TF_VAR_zendesk_oauth_refresh_token: ${{ secrets.TF_VAR_ZENDESK_OAUTH_REFRESH_TOKEN }}
     steps:
       - name: Check out code
         uses: actions/checkout@v4

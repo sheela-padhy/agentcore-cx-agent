@@ -48,7 +48,7 @@ If you've looked at AWS's original `agentcore-samples` repo, here's exactly what
 | Knowledge Base backed by **OpenSearch Serverless** | Backed by **Amazon S3 Vectors** | OpenSearch Serverless had a real, reproducible bug: its internal "collection" layer silently failed to allocate shards, so retrieval always returned zero results, no error. S3 Vectors has no collection/shard concept at all — simpler, and cheaper too. |
 | Manual deployment (`terraform apply`, then manually clicking "Update hosting" in the console) | **Full CI/CD**: push code → automated checks → merge → automatic build, tag, and redeploy | A real pipeline, not a checklist — see [Architecture](#architecture) below. |
 | Auth via JWT bearer tokens | **AWS IAM / SigV4 signing** | Matches how AWS's own tools authenticate; one fewer custom auth system to maintain. |
-| Zendesk ticketing integration | Scaffolded but not completed | Left as a clearly-marked optional extension point. |
+| Zendesk via API token | **Zendesk via OAuth2** | Zendesk is sunsetting API tokens (removed for new trial accounts already). The agent refreshes its access token before every real call and persists the rotated refresh token back to Secrets Manager automatically - see `_get_zendesk_access_token()` in `tools.py`. |
 
 
 ## Architecture
@@ -179,8 +179,42 @@ Fill in values in `infra/terraform.tfvars`:
 - `langfuse_host`/`langfuse_public_key`/`langfuse_secret_key` — from your Langfuse account (**Settings → API Keys**)
 - `tavily_api_key` — from your Tavily account, if you want real web search
 - `gateway_url`/`gateway_api_key` — **honestly, these are leftover from the original blueprint's removed Gateway and aren't actually used by the running application anymore.** Terraform still requires *some* value here (any placeholder string works, e.g. `"unused"`) — a known loose end, not something you need to actually set up.
+- `zendesk_domain`/`zendesk_oauth_client_id`/`zendesk_oauth_client_secret`/`zendesk_oauth_refresh_token` — optional, see below if you want real ticketing (skip entirely and the agent just returns realistic mock tickets instead)
 
 This file (and anything in it) **never gets committed to git** — check `.gitignore`, it's deliberately excluded since it holds real secrets.
+
+#### Setting up Zendesk (optional)
+
+Zendesk has been sunsetting self-serve API tokens for new accounts, pushing everyone to OAuth instead — so this takes a few manual clicks the first time. After this one-time setup, the agent handles everything else automatically (it refreshes its own access token and persists the rotated refresh token back to AWS, with no further manual steps).
+
+1. Sign up for a free trial at [zendesk.com/register](https://www.zendesk.com/register/) and note the **subdomain** you pick (e.g. `yoursubdomain` in `yoursubdomain.zendesk.com`) — that's your `zendesk_domain`.
+2. In Zendesk, go to **Admin Center → Apps and integrations → APIs → OAuth Clients → Add OAuth client**. Fill in:
+   - **Name**: anything, e.g. `AgentCore CX Agent`
+   - **Client kind**: **Confidential** — this can't be changed after creation, so set it now (if you accidentally leave it as Public, delete the client and start over)
+   - **Redirect URL**: `https://localhost/callback` (nothing needs to actually run at this address — see step 4)
+   - **Scopes**: check `tickets:read` and `tickets:write` at minimum
+3. Save, then copy the **Unique identifier** (your `zendesk_oauth_client_id`) and **Client Secret** (your `zendesk_oauth_client_secret`) — the secret is shown once only.
+4. Build this URL with your own values and open it in a browser:
+   ```
+   https://YOUR_SUBDOMAIN.zendesk.com/oauth/authorizations/new?response_type=code&client_id=YOUR_CLIENT_ID&redirect_uri=https://localhost/callback&scope=tickets%3Aread%20tickets%3Awrite
+   ```
+   Click **Allow**. The browser will then try to load `https://localhost/callback?code=...` and fail — that's expected, nothing is hosted there. Copy the `code` value straight out of the address bar.
+5. Exchange that code for a refresh token (run this once, from anywhere with Python + `requests` installed):
+   ```python
+   import requests
+   resp = requests.post(
+       "https://YOUR_SUBDOMAIN.zendesk.com/oauth/tokens",
+       json={
+           "grant_type": "authorization_code",
+           "code": "PASTE_THE_CODE_HERE",
+           "client_id": "YOUR_CLIENT_ID",
+           "client_secret": "YOUR_CLIENT_SECRET",
+           "redirect_uri": "https://localhost/callback",
+       },
+   )
+   print(resp.json())
+   ```
+   The `refresh_token` in the response is your `zendesk_oauth_refresh_token`. This exact value only needs to be correct once — Terraform writes it as the starting value, and the running agent overwrites it in Secrets Manager every time it's actually used (Zendesk rotates it on every refresh).
 
 ### Step 6: First deployment (bootstrap, run locally — this is the one time you do need Docker)
 
@@ -204,6 +238,7 @@ Your CI/CD pipeline needs the same values from `terraform.tfvars`, since GitHub 
 - `TF_VAR_GATEWAY_URL`, `TF_VAR_GATEWAY_API_KEY` (any placeholder, per Step 5)
 - `TF_VAR_TAVILY_API_KEY`
 - `TF_VAR_LANGFUSE_HOST`, `TF_VAR_LANGFUSE_PUBLIC_KEY`, `TF_VAR_LANGFUSE_SECRET_KEY`
+- *(Optional)* `TF_VAR_ZENDESK_DOMAIN`, `TF_VAR_ZENDESK_OAUTH_CLIENT_ID`, `TF_VAR_ZENDESK_OAUTH_CLIENT_SECRET`, `TF_VAR_ZENDESK_OAUTH_REFRESH_TOKEN` — only if you did the Zendesk OAuth setup in Step 5
 
 *(Optional)* If you want Slack deployment notifications: create a Slack Incoming Webhook ([instructions](https://api.slack.com/messaging/webhooks)) and add it as secret `SLACK_WEBHOOK_URL`. If you skip this, just delete the "Notify Slack" steps from the two workflow files, or the pipeline will fail trying to post to a webhook that doesn't exist.
 
@@ -329,9 +364,9 @@ If you set up Tavily/Langfuse/Slack, no cleanup needed there beyond deleting the
 ## Known limitations
 
 Being upfront about what's *not* finished:
-- **Zendesk ticketing** — scaffolded in the Terraform config (variables exist) but never actually wired up or tested
-- **PII guardrail anonymization** — configured, but a test with a fake SSN didn't trigger it as expected; never fully root-caused
 - **`gateway_url`/`gateway_api_key` variables** — leftover from the removed GenAI Gateway, still required by Terraform syntactically, not used by the running application (see Step 5)
+
+Both the Zendesk integration and the PII guardrail anonymization (previously listed here as open issues) are now fixed and verified - see the "What's different" table above and the Guardrail root-cause note in the Terraform comments (`infra/modules/bedrock-guardrails/main.tf`).
 
 
 ## Security

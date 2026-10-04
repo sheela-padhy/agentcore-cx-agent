@@ -121,13 +121,17 @@ resource "aws_secretsmanager_secret_version" "zendesk_credentials" {
     zendesk_oauth_refresh_token = var.zendesk_oauth_refresh_token
   })
 
-  # NOTE: once this starting value has been applied for real, come back
-  # and add `lifecycle { ignore_changes = [secret_string] }` here - the
-  # backend rewrites zendesk_oauth_refresh_token on every API call (Zendesk
-  # rotates it on each use), and without ignore_changes, the next
-  # `terraform apply` would stomp that live-rotated value back to this
-  # stale starting one. Deliberately left off for now so this apply
-  # actually writes the real credentials.
+  # The backend rewrites zendesk_oauth_refresh_token in AWS on every real
+  # Zendesk API call (Zendesk rotates it on each use - the old one stops
+  # working immediately). CI only ever knows the frozen GitHub Secret
+  # value from initial setup, never that live-rotated one, so without
+  # ignore_changes here, ANY future terraform apply (even for an unrelated
+  # infra change) would stomp the live token back to this stale starting
+  # value and break Zendesk again. Set once the real starting values have
+  # been applied for real - see README's Zendesk OAuth setup section.
+  lifecycle {
+    ignore_changes = [secret_string]
+  }
 }
 
 resource "aws_secretsmanager_secret_rotation" "zendesk_credentials" {
