@@ -123,9 +123,12 @@ def main():
                 )
 
             if response:
-                # Add assistant message
+                # Add assistant message - prefer the model the backend
+                # actually reports it used, not the sidebar's placeholder
+                # (DEFAULT_MODEL is set server-side and can change without
+                # this frontend knowing).
                 metadata = {
-                    "model": model,
+                    "model": response.get("model") or model,
                     "status": response.get("status", "success"),
                 }
 
