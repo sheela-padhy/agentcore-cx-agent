@@ -37,20 +37,33 @@ variable "kb_model_arn" {
 }
 
 # Zendesk Variables
+# Zendesk is in the process of removing API tokens (sunset April 2027) and
+# now pushes new trial accounts to OAuth. The agent authenticates via a
+# refresh_token that Zendesk rotates on every use - the backend persists the
+# new one back to Secrets Manager each time (see create_support_ticket /
+# get_support_tickets in tools.py), so this starting value only needs to be
+# correct once.
 variable "zendesk_domain" {
-  description = "Zendesk domain"
+  description = "Zendesk subdomain (the part before .zendesk.com)"
   default     = ""
   type        = string
 }
 
-variable "zendesk_email" {
-  description = "Zendesk email"
+variable "zendesk_oauth_client_id" {
+  description = "Zendesk OAuth client unique identifier"
   default     = ""
   type        = string
 }
 
-variable "zendesk_api_token" {
-  description = "Zendesk API token"
+variable "zendesk_oauth_client_secret" {
+  description = "Zendesk OAuth client secret"
+  default     = ""
+  type        = string
+  sensitive   = true
+}
+
+variable "zendesk_oauth_refresh_token" {
+  description = "Zendesk OAuth refresh token (initial value - the backend rotates and overwrites this in Secrets Manager on every use)"
   default     = ""
   type        = string
   sensitive   = true

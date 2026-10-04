@@ -115,10 +115,19 @@ resource "aws_secretsmanager_secret" "zendesk_credentials" {
 resource "aws_secretsmanager_secret_version" "zendesk_credentials" {
   secret_id = aws_secretsmanager_secret.zendesk_credentials.id
   secret_string = jsonencode({
-    zendesk_domain    = var.zendesk_domain
-    zendesk_email     = var.zendesk_email
-    zendesk_api_token = var.zendesk_api_token
+    zendesk_domain              = var.zendesk_domain
+    zendesk_oauth_client_id     = var.zendesk_oauth_client_id
+    zendesk_oauth_client_secret = var.zendesk_oauth_client_secret
+    zendesk_oauth_refresh_token = var.zendesk_oauth_refresh_token
   })
+
+  # NOTE: once this starting value has been applied for real, come back
+  # and add `lifecycle { ignore_changes = [secret_string] }` here - the
+  # backend rewrites zendesk_oauth_refresh_token on every API call (Zendesk
+  # rotates it on each use), and without ignore_changes, the next
+  # `terraform apply` would stomp that live-rotated value back to this
+  # stale starting one. Deliberately left off for now so this apply
+  # actually writes the real credentials.
 }
 
 resource "aws_secretsmanager_secret_rotation" "zendesk_credentials" {

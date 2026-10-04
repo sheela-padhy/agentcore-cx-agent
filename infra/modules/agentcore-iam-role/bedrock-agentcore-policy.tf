@@ -216,10 +216,26 @@ resource "aws_iam_policy" "config_permissions" {
         ]
       },
       {
+        # Zendesk's OAuth refresh_token rotates on every use - the backend
+        # must write the new one back immediately after each refresh call,
+        # or the next refresh is rejected (the old refresh_token is single
+        # use). Scoped to this one secret only, not the others above.
+        Effect = "Allow"
+        Action = [
+          "secretsmanager:PutSecretValue"
+        ]
+        Resource = [
+          "arn:aws:secretsmanager:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:secret:zendesk_credentials*"
+        ]
+      },
+      {
         Effect = "Allow"
         Action = [
           "kms:Decrypt",
-          "kms:DescribeKey"
+          "kms:DescribeKey",
+          # Needed for secretsmanager:PutSecretValue above - writing a new
+          # secret value encrypts it with this key, not just decrypts.
+          "kms:GenerateDataKey"
         ]
         Resource = [
           var.secrets_kms_key_arn,
