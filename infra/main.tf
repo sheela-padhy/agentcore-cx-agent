@@ -79,10 +79,10 @@ module "secrets" {
 
   cognito_client_secret = module.cognito.client_secret
 
-  # Placeholder values - replace with actual values
-  zendesk_domain      = var.zendesk_domain
-  zendesk_email       = var.zendesk_email
-  zendesk_api_token   = var.zendesk_api_token
+  zendesk_domain              = var.zendesk_domain
+  zendesk_oauth_client_id     = var.zendesk_oauth_client_id
+  zendesk_oauth_client_secret = var.zendesk_oauth_client_secret
+  zendesk_oauth_refresh_token = var.zendesk_oauth_refresh_token
   langfuse_host       = var.langfuse_host
   langfuse_public_key = var.langfuse_public_key
   langfuse_secret_key = var.langfuse_secret_key

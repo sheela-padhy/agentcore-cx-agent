@@ -13,14 +13,28 @@ resource "aws_bedrock_guardrail" "guardrail" {
   }
 
   sensitive_information_policy_config {
+    # input_enabled / output_enabled are "optional, computed" in the AWS
+    # provider schema - when left unset, AWS silently defaults them to
+    # disabled, so the entity shows up as "configured" (action=ANONYMIZE)
+    # in GetGuardrail but ApplyGuardrail never actually scans for it
+    # (sensitiveInformationPolicyUnits stays 0 on every call). They must
+    # be set explicitly to turn the entity on.
     pii_entities_config {
       action         = "ANONYMIZE"
       type           = "US_BANK_ROUTING_NUMBER"
+      input_enabled  = true
+      input_action   = "ANONYMIZE"
+      output_enabled = true
+      output_action  = "ANONYMIZE"
     }
 
     pii_entities_config {
       action         = "ANONYMIZE"
       type           = "US_SOCIAL_SECURITY_NUMBER"
+      input_enabled  = true
+      input_action   = "ANONYMIZE"
+      output_enabled = true
+      output_action  = "ANONYMIZE"
     }
   }
 

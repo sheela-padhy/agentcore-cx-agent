@@ -96,6 +96,72 @@ def retrieve_context(query: str) -> dict:
         }
 
 
+def _get_zendesk_access_token() -> dict | None:
+    """Exchange the stored Zendesk refresh_token for a fresh access_token.
+
+    Zendesk's OAuth tokens are short-lived (access_token ~30 min) and the
+    refresh_token itself is single-use - every refresh call returns a NEW
+    refresh_token and invalidates the old one. So this isn't a one-time
+    setup: every real call has to refresh first, then immediately persist
+    the newly-issued refresh_token back to Secrets Manager, or the next
+    call will fail with invalid_grant.
+
+    Returns None (triggering the mock fallback) if Zendesk isn't configured
+    or the refresh fails for any reason.
+    """
+    import requests
+
+    try:
+        creds = json.loads(secret_reader.read_secret("zendesk_credentials"))
+        domain = creds.get("zendesk_domain")
+        client_id = creds.get("zendesk_oauth_client_id")
+        client_secret = creds.get("zendesk_oauth_client_secret")
+        refresh_token = creds.get("zendesk_oauth_refresh_token")
+    except Exception:
+        logger.error("Failed to retrieve Zendesk credentials")
+        return None
+
+    if not all([domain, client_id, client_secret, refresh_token]):
+        return None
+
+    try:
+        response = requests.post(
+            f"https://{domain}.zendesk.com/oauth/tokens",
+            json={
+                "grant_type": "refresh_token",
+                "refresh_token": refresh_token,
+                "client_id": client_id,
+                "client_secret": client_secret,
+            },
+            timeout=30,
+        )
+        response.raise_for_status()
+        token_data = response.json()
+    except Exception as e:
+        logger.error("Zendesk OAuth token refresh failed: %s", str(e))
+        return None
+
+    try:
+        creds["zendesk_oauth_refresh_token"] = token_data["refresh_token"]
+        boto3.client(
+            "secretsmanager", region_name=settings.aws_region
+        ).put_secret_value(
+            SecretId="zendesk_credentials", SecretString=json.dumps(creds)
+        )
+    except Exception as e:
+        # The access_token below still works for this one call, but the
+        # NEXT refresh will fail since Zendesk already invalidated the old
+        # refresh_token server-side. Log loudly so this doesn't go unnoticed.
+        logger.error(
+            "Got a new Zendesk access_token but failed to persist the "
+            "rotated refresh_token - the next Zendesk call will likely "
+            "fail until this is fixed: %s",
+            str(e),
+        )
+
+    return {"domain": domain, "access_token": token_data["access_token"]}
+
+
 @tool
 def create_support_ticket(
     subject: str,
@@ -105,9 +171,7 @@ def create_support_ticket(
     priority: str = "normal",
 ) -> dict:
     """Create a support ticket in Zendesk."""
-    import json
     import requests
-    import base64
     import uuid
 
     logger.info("Creating support ticket with subject: %s...", subject[:50])
@@ -118,17 +182,10 @@ def create_support_ticket(
         requester_email or "N/A",
     )
 
-    try:
-        # Get Zendesk credentials
-        zendesk_credentials = secret_reader.read_secret("zendesk_credentials")
-        subdomain = zendesk_credentials["zendesk_domain"]
-        email = zendesk_credentials["zendesk_email"]
-        api_token = zendesk_credentials["zendesk_api_token"]
-    except Exception:
-        logger.error("Failed to retrieve Zendesk credentials")
+    zendesk = _get_zendesk_access_token()
 
-    # If credentials not configured, return mock response
-    if not all([subdomain, email, api_token]):
+    # If credentials not configured / refresh failed, return mock response
+    if not zendesk:
         logger.warning("Zendesk credentials not configured, returning mock response")
         ticket_id = str(uuid.uuid4())[:8]
         mock_response = {
@@ -149,8 +206,11 @@ def create_support_ticket(
 
     # Real Zendesk integration
     logger.info("Attempting to create real Zendesk ticket")
-    auth = base64.b64encode(f"{email}/token:{api_token}".encode()).decode("ascii")
-    headers = {"Content-Type": "application/json", "Authorization": f"Basic {auth}"}
+    subdomain = zendesk["domain"]
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {zendesk['access_token']}",
+    }
 
     ticket_data = {
         "subject": subject,
@@ -199,25 +259,16 @@ def get_support_tickets(
 ) -> dict:
     """Fetch tickets from Zendesk with optional filtering."""
     import requests
-    import base64
 
     logger.info(
         "Fetching support tickets - Status: %s, Limit: %s", status or "all", limit
     )
     logger.debug("Sort parameters - By: %s, Order: %s", sort_by, sort_order)
 
-    try:
-        # Get Zendesk credentials
-        zendesk_credentials = secret_reader.read_secret("zendesk_credentials")
-        subdomain = zendesk_credentials["zendesk_domain"]
-        email = zendesk_credentials["zendesk_email"]
-        api_token = zendesk_credentials["zendesk_api_token"]
-        logger.debug("Retrieved Zendesk credentials for domain")
-    except Exception:
-        logger.error("Failed to retrieve Zendesk credentials")
+    zendesk = _get_zendesk_access_token()
 
-    # If credentials not configured, return mock response
-    if not all([subdomain, email, api_token]):
+    # If credentials not configured / refresh failed, return mock response
+    if not zendesk:
         logger.warning("Zendesk credentials not configured, returning mock tickets")
         mock_response = {
             "tickets": [
@@ -235,8 +286,11 @@ def get_support_tickets(
 
     # Real Zendesk integration
     logger.info("Fetching tickets from Zendesk API")
-    auth = base64.b64encode(f"{email}/token:{api_token}".encode()).decode("ascii")
-    headers = {"Content-Type": "application/json", "Authorization": f"Basic {auth}"}
+    subdomain = zendesk["domain"]
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {zendesk['access_token']}",
+    }
 
     params = {"sort_by": sort_by, "sort_order": sort_order, "per_page": min(limit, 100)}
     if status:

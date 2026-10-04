@@ -5,17 +5,23 @@ variable "cognito_client_secret" {
 }
 
 variable "zendesk_domain" {
-  description = "Zendesk domain"
+  description = "Zendesk subdomain"
   type        = string
 }
 
-variable "zendesk_email" {
-  description = "Zendesk email"
+variable "zendesk_oauth_client_id" {
+  description = "Zendesk OAuth client unique identifier"
   type        = string
 }
 
-variable "zendesk_api_token" {
-  description = "Zendesk API token"
+variable "zendesk_oauth_client_secret" {
+  description = "Zendesk OAuth client secret"
+  type        = string
+  sensitive   = true
+}
+
+variable "zendesk_oauth_refresh_token" {
+  description = "Zendesk OAuth refresh token (initial value - rotated by the backend thereafter)"
   type        = string
   sensitive   = true
 }
