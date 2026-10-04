@@ -5,7 +5,7 @@ A real, working AI customer service agent — built with **LangGraph**, hosted o
 
 This started as a fork of AWS's own [`agentcore-samples`](https://github.com/awslabs/agentcore-samples) tutorial blueprint, then got substantially rebuilt: a $380/month dependency removed, a long-standing retrieval bug root-caused and fixed, and a genuine CI/CD pipeline added on top — all documented here in enough detail that you can reproduce the whole thing yourself, even as a beginner.
 
-![](assets/agent01.png "Screenshot of Streamlit-based chat UI")
+![](assets/agent01.png "Screenshot of the agent creating a real Zendesk support ticket and returning a direct link to it")
 
 **Companion blog post:** *(link here once published)* — walks through the reasoning behind each decision below; this README is the hands-on "how to actually build it" reference.
 
