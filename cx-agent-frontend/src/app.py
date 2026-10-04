@@ -23,11 +23,9 @@ def init_session_state():
     if "agent_runtime_arn" not in st.session_state:
         st.session_state.agent_runtime_arn = ""
     if "region" not in st.session_state:
-        st.session_state.region = "us-east-1"
+        st.session_state.region = "us-west-2"
     if "use_agentcore" not in st.session_state:
         st.session_state.use_agentcore = False
-    if "auth_token" not in st.session_state:
-        st.session_state.auth_token = ""
 
 
 def main():
@@ -68,6 +66,7 @@ def main():
         st.caption("Powered by AWS Bedrock AgentCore Runtime")
     else:
         st.caption("Powered by LiteLLM Gateway hosted on AWS")
+    st.caption("Built by Sheela Padhy")
 
     init_session_state()
 
@@ -77,16 +76,13 @@ def main():
 
     # Initialize client based on configuration
     if st.session_state.use_agentcore and config_valid:
-        auth_token = st.session_state.get("auth_token", "")
+        # Auth is AWS SigV4 (this machine's own IAM credentials), signed
+        # inside AgentCoreClient itself - not a bearer token passed in here.
         client = AgentCoreClient(
             agent_runtime_arn=st.session_state.agent_runtime_arn,
             region=st.session_state.region,
-            auth_token=auth_token,
         )
-        if auth_token:
-            st.info("🚀 Connected to AgentCore Runtime")
-        else:
-            st.warning("⚠️ AgentCore configured but no auth token provided")
+        st.info("🚀 Connected to AgentCore Runtime")
     else:
         client = ConversationClient()
         if st.session_state.use_agentcore:

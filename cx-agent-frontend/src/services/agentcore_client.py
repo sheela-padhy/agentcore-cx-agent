@@ -9,10 +9,9 @@ import uuid
 class AgentCoreClient:
     """Client for AWS Bedrock AgentCore Runtime."""
 
-    def __init__(self, agent_runtime_arn: str, region: str, auth_token: str = None):
+    def __init__(self, agent_runtime_arn: str, region: str):
         self.agent_runtime_arn = agent_runtime_arn
         self.region = region
-        self.auth_token = auth_token
 
     def _signed_headers(self, url: str, body: str, extra_headers: dict) -> dict:
         """Sign the request with AWS SigV4 using this machine's own IAM
