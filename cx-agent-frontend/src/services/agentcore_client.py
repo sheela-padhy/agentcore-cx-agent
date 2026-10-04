@@ -62,10 +62,13 @@ class AgentCoreClient:
 
             if response.status_code == 200:
                 result = response.json()
+                output = result.get("output", {})
+                tools_used_raw = output.get("metadata", {}).get("tools_used", "")
                 return {
-                    "response": result.get("output", {}).get("message", "No response"),
+                    "response": output.get("message", "No response"),
                     "status": "success",
-                    "tools_used": [],
+                    "model": output.get("model"),
+                    "tools_used": [t.strip() for t in tools_used_raw.split(",") if t.strip()],
                 }
             else:
                 return {

@@ -43,6 +43,7 @@ class ConversationClient:
             if "output" in result:
                 return {
                     "response": result["output"].get("message", ""),
+                    "model": result["output"].get("model"),
                     "metadata": result["output"].get("metadata", {}),
                     "tools_used": result["output"].get("tools_used", []),
                 }

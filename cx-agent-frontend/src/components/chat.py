@@ -159,11 +159,13 @@ def render_sidebar():
     with st.sidebar:
         st.header("Configuration")
 
-        # Model is fixed server-side (this agent calls Claude directly via
-        # Bedrock, not through a model-routing gateway), so there's nothing
-        # to pick here.
-        model = "global.anthropic.claude-haiku-4-5-20251001-v1:0"
-        st.caption(f"Model: {model} (fixed, set server-side)")
+        # Model is fixed server-side (DEFAULT_MODEL on the Agent Runtime,
+        # not a frontend choice), so there's nothing to pick here. This
+        # placeholder is only ever used if a response genuinely doesn't
+        # report its own model - see "Message Details" on each response
+        # for what actually answered.
+        model = "server-configured"
+        st.caption("Model: configured server-side (see Message Details on each response)")
 
         # User ID
         user_id = st.text_input("User ID", value=st.session_state.user_id)
