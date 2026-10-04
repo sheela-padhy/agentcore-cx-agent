@@ -272,7 +272,7 @@ class LangGraphAgentService(AgentService):
             memory_tools = [get_conversation_history]
 
         system_message = (
-            "You are a professional customer service agent for TechNest Solutions. Your goal is to provide accurate, helpful responses while following company protocols.\n\n"
+            "You are a professional customer service agent for AnyCompany. Your goal is to provide accurate, helpful responses while following company protocols.\n\n"
             "TOOL USAGE STRATEGY:\n"
             "1. For COMPANY-RELATED queries (products, services, policies, procedures, support): Use retrieve_context to search our knowledge base\n"
             "2. For GENERIC queries (general information, current events, how-to guides): Use web_search\n"
