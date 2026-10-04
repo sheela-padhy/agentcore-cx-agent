@@ -110,6 +110,8 @@ Two separate pipelines, deliberately different in one key way: **application cod
 
 ## Setup, step by step
 
+> **If you've never used a terminal before:** every gray box below with a `$` or command in it (like the one right under Step 1) is something you **type or paste into a terminal**, not into a browser or text editor. On Windows, open **PowerShell** or **Git Bash**; on Mac/Linux, open **Terminal**. Paste the command, press Enter, and read whatever it prints — that output often matters for the next step.
+
 ### Step 1: Get your own copy of this repo
 
 Click **"Fork"** at the top of this repo's GitHub page (this keeps a connection to the original, so you can pull in future updates — a genuine Fork, not a from-scratch copy). Then clone **your fork**:
