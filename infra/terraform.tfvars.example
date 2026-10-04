@@ -31,7 +31,11 @@ langfuse_secret_key = "your-langfuse-secret-key"  # nosec B105
 # tavily_api_key = "your-tavily-api-key"  # nosec B105
 
 ## (Optional) Zendesk - ticketing
-# Zendesk (Optional, for agent ticketing tool)
+## Zendesk is sunsetting API tokens for new accounts (OAuth only now).
+## See the README for the one-time OAuth client setup + authorization steps
+## needed to get these three values - after that, the agent refreshes and
+## persists the rotated refresh_token automatically, no further manual steps.
 # zendesk_domain = "your-subdomain"
-# zendesk_email = "your-email@example.com"
-# zendesk_api_token = "your-zendesk-api-token"  # nosec B105
+# zendesk_oauth_client_id = "your-oauth-client-id"
+# zendesk_oauth_client_secret = "your-oauth-client-secret"  # nosec B105
+# zendesk_oauth_refresh_token = "your-initial-refresh-token"  # nosec B105
