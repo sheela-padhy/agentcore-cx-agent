@@ -49,6 +49,10 @@ flowchart TB
 
 **The request flow:** you log in via Cognito, then every message goes from Streamlit → AgentCore Runtime (a SigV4-signed request, the same mechanism the AWS CLI itself uses) → Guardrails check → Bedrock → your choice of Knowledge Base retrieval or live web search → Guardrails check again → back to you. Every step gets traced to Langfuse.
 
+That tracing isn't just a claim - here's a real trace from this project, the exact request that created a real Zendesk ticket, showing every step the agent took and what it cost:
+
+![](assets/langfuse-trace.png "A real Langfuse trace: the agent's full execution tree, from the user's message through model calls and tool calls, with cost and timing for each step")
+
 **The deployment flow (to make it production ready):**
 
 ```mermaid
@@ -66,6 +70,12 @@ flowchart TB
     MergeInfra --> ManualApply["Terraform Apply:\nmanual trigger only"]
     ManualApply --> Slack2["Slack: apply result"]
 ```
+
+**Quick summary, when to use what:** CI checks your code is clean before you merge. CD builds and deploys your code automatically right after you merge - no extra step. Terraform Plan just shows what infrastructure *would* change, and runs automatically so you can review it safely. Terraform Apply is the one that actually makes those changes happen in AWS, and you always trigger it yourself by hand - infrastructure changes can cost money or delete real resources, so that step is never automatic.
+
+Here's what a real run of this pipeline looks like - every green checkmark below is a real pull request from building this project, not a staged example:
+
+![](assets/github-actions-runs.png "GitHub Actions: a list of real workflow runs, all passing, each tied to a real pull request from this project")
 
 Two separate pipelines, deliberately different in one key way: **application code deploys fully automatically** on merge (low risk - a bad deploy just means a bad chat response, easy to roll back). **Infrastructure changes always require a manual click to apply** (higher risk - can cost money or delete real resources), even though the *plan preview* happens automatically on every PR. This split is a real, common pattern in professional infrastructure teams, not a shortcut.
 
@@ -293,6 +303,10 @@ Once Step 8 is done, you never run `terraform apply` or redeploy the agent manua
 1. Same branch → PR flow, but the PR also triggers an automatic `terraform plan`, posted as a comment - read it before merging
 2. Merge the PR (nothing in AWS changes yet)
 3. Go to **Actions → Terraform Apply → Run workflow** to actually apply it - a deliberate, separate, manual step
+
+What this actually looks like in Slack, from a real PR on this project:
+
+![](assets/slack-notifications.png "Real Slack notifications: a PR opened, then a deployment succeeding with the commit hash and a link to the GitHub Actions run")
 
 
 ## Evaluation framework
