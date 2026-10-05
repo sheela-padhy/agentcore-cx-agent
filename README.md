@@ -5,6 +5,10 @@ A real, working AI customer service agent. Built with **LangGraph**, hosted on *
 
 ![](assets/agent01.png "Screenshot of the agent creating a real Zendesk support ticket and returning a direct link to it")
 
+That same ticket, landing in the real Zendesk dashboard a moment later:
+
+![](assets/zendesk-ticket.png "The real Zendesk ticket the agent just created, showing it came in via API with an AI-generated summary")
+
 ## Table of Contents
 
 1. [What this actually is](#what-this-actually-is)
