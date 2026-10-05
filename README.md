@@ -249,7 +249,9 @@ git push
 
 Go to your repo's **Actions** tab - you should see workflows available. From here on, **every change goes through a branch and a Pull Request** (see [How the day-to-day workflow works](#how-the-day-to-day-workflow-works) below) rather than pushing straight to `main`.
 
-### Step 9: Create yourself a login
+### Step 9 (optional): Create a Cognito user
+
+**This step is optional and not required to run the app.** The Streamlit frontend doesn't currently have a login screen - access today is controlled entirely by AWS IAM (whoever has your Agent Runtime ARN and valid AWS credentials for your account can use the agent, the same way any internal company tool works). This step creates a real user in the Cognito User Pool that Terraform already sets up, for anyone who wants to build a proper login screen on top of it later.
 
 ```bash
 cd infra
@@ -285,7 +287,7 @@ uv sync
 uv run streamlit run src/app.py --server.port 8501 --server.headless true
 ```
 
-Open `http://localhost:8501`, log in with the Cognito user from Step 9, and paste your Agent Runtime ARN into the sidebar:
+Open `http://localhost:8501` and paste your Agent Runtime ARN into the sidebar (no login needed - see the note in Step 9):
 ```bash
 cd infra && terraform output -raw agent_runtime_arn
 ```
@@ -366,6 +368,7 @@ If you set up Tavily/Langfuse/Slack, no cleanup needed there beyond deleting the
 
 Being upfront about what's *not* finished:
 - **`gateway_url`/`gateway_api_key` variables** - leftover from the removed GenAI Gateway, still required by Terraform syntactically, not used by the running application (see Step 5)
+- **No user login in the Streamlit app** - Cognito infrastructure exists (see Step 9), but nothing in the frontend currently uses it. Access today is controlled entirely by AWS IAM (whoever has your Agent Runtime ARN and valid AWS credentials can use the agent). A real login screen would be a genuine feature to add, not a quick fix.
 
 Both the Zendesk integration and the PII guardrail anonymization (previously listed here as open issues) are now fixed and verified - see [CHANGES-FROM-ORIGINAL.md](CHANGES-FROM-ORIGINAL.md) and the Guardrail root-cause note in the Terraform comments (`infra/modules/bedrock-guardrails/main.tf`).
 
