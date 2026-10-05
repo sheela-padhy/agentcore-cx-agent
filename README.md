@@ -3,7 +3,7 @@
 
 A real, working AI customer service agent — built with **LangGraph**, hosted on **AWS Bedrock AgentCore**, with a complete **GitHub Actions CI/CD pipeline** (for both the application and the infrastructure), real observability, and a from-scratch-reproducible setup.
 
-This started as a fork of AWS's own [`agentcore-samples`](https://github.com/awslabs/agentcore-samples) tutorial blueprint, then got substantially rebuilt: a $380/month dependency removed, a long-standing retrieval bug root-caused and fixed, and a genuine CI/CD pipeline added on top — all documented here in enough detail that you can reproduce the whole thing yourself, even as a beginner.
+Documented here in enough detail that you can reproduce the whole thing yourself, even as a beginner. *(If you're curious how this compares to AWS's original sample blueprint this started from, see [CHANGES-FROM-ORIGINAL.md](CHANGES-FROM-ORIGINAL.md) — not needed to follow this guide.)*
 
 ![](assets/agent01.png "Screenshot of the agent creating a real Zendesk support ticket and returning a direct link to it")
 
@@ -13,7 +13,6 @@ This started as a fork of AWS's own [`agentcore-samples`](https://github.com/aws
 ## Table of Contents
 
 1. [What this actually is](#what-this-actually-is)
-1. [What's different from the original AWS blueprint](#whats-different-from-the-original-aws-blueprint)
 1. [Architecture](#architecture)
 1. [Prerequisites](#prerequisites)
 1. [Setup, step by step](#setup-step-by-step)
@@ -36,19 +35,6 @@ A customer service chatbot that:
 - **Deploys itself automatically** whenever you push a code change — no manual steps
 
 It's built to be a genuine, from-scratch-learnable example of how a small team actually runs an AI agent in production: not just "call an LLM," but the surrounding scaffolding — auth, safety, observability, and automated deployment — that real systems need.
-
-
-## What's different from the original AWS blueprint
-
-If you've looked at AWS's original `agentcore-samples` repo, here's exactly what changed and why:
-
-| Original design | This fork | Why |
-|---|---|---|
-| Routes every model call through a self-hosted **GenAI Gateway** (LiteLLM) | Calls **Amazon Bedrock directly** | The Gateway costs ~$380/month to run, just for routing — not worth it for a single agent. Direct calls are simpler, at the cost of losing cross-project governance/rate-limiting (a reasonable trade at this scale). |
-| Knowledge Base backed by **OpenSearch Serverless** | Backed by **Amazon S3 Vectors** | OpenSearch Serverless had a real, reproducible bug: its internal "collection" layer silently failed to allocate shards, so retrieval always returned zero results, no error. S3 Vectors has no collection/shard concept at all — simpler, and cheaper too. |
-| Manual deployment (`terraform apply`, then manually clicking "Update hosting" in the console) | **Full CI/CD**: push code → automated checks → merge → automatic build, tag, and redeploy | A real pipeline, not a checklist — see [Architecture](#architecture) below. |
-| Auth via JWT bearer tokens | **AWS IAM / SigV4 signing** | Matches how AWS's own tools authenticate; one fewer custom auth system to maintain. |
-| Zendesk via API token | **Zendesk via OAuth2** | Zendesk is sunsetting API tokens (removed for new trial accounts already). The agent refreshes its access token before every real call and persists the rotated refresh token back to Secrets Manager automatically - see `_get_zendesk_access_token()` in `tools.py`. |
 
 
 ## Architecture
